@@ -1,0 +1,262 @@
+[
+  {
+    "id": 1,
+    "address": "Dolsan-eup, Yeosu-si, 한국",
+    "distance": "326km 거리",
+    "date": "9월 3일~8일",
+    "price": 159000,
+    "images": ["/images/Card/11.webp"],
+    "category": "멋진 수영장"
+  },
+  {
+    "id": 2,
+    "address": "Dolsan-eup, Yeosu-si, 한국",
+    "distance": "326km 거리",
+    "date": "9월 3일~8일",
+    "price": 159000,
+    "images": ["/images/Card/21.webp"],
+    "category": "멋진 수영장"
+  },
+  {
+    "id": 3,
+    "address": "바기오, Cordillera Administrative Region",
+    "price": 139672,
+    "distance": "2369km 거리",
+    "date": "2021.11.12-2021.11.19",
+    "images": [
+      "https://a0.muscache.com/im/pictures/455ef33d-3bfd-4a2a-9bbf-91b7fe399761.jpg?im_w=1200"
+    ],
+    "category": "해변근처"
+  },
+  {
+    "id": 4,
+    "address": "강릉시, 강원도",
+    "price": 256369,
+    "distance": "196km 거리",
+    "date": "2021.11.12-2021.11.19",
+    "images": [
+      "https://a0.muscache.com/im/pictures/b1a320b3-21f1-49f2-a535-7ee4dbc1a2b4.jpg?im_w=1200"
+    ],
+    "category": "해변근처"
+  },
+  {
+    "id": 5,
+    "address": "Cdministrative Aegion",
+    "price": 139672,
+    "distance": "2369km 거리",
+    "date": "2021.11.12-2021.11.19",
+    "images": [
+      "https://a0.muscache.com/im/pictures/0f52b46a-16fe-472f-a04b-eec52680f162.jpg?im_w=720"
+    ],
+    "category": "해변근처"
+  },
+  {
+    "id": 6,
+    "address": "체리벨, Administrative Region",
+    "price": 159672,
+    "distance": "3369km 거리",
+    "date": "2021.11.15-2021.11.20",
+    "images": [
+      "https://a0.muscache.com/im/pictures/fd4e94ce-2c3e-4373-a10f-9f8b2f0cee49.jpg?im_w=1200"
+    ],
+    "category": "해변근처"
+  },
+  {
+    "id": 7,
+    "address": "Kota Belud, Sabah",
+    "price": 349580,
+    "distance": "3528km 거리",
+    "date": "2021.10.22-2021.10.29",
+    "images": [
+      "https://a0.muscache.com/im/pictures/af687d42-d4fe-4758-8eee-c9ab2cce799a.jpg?im_w=1200"
+    ],
+    "category": "해변근처"
+  },
+  {
+    "id": 8,
+    "address": "전주시 전북",
+    "price": 74200,
+    "distance": "124km 거리",
+    "date": "2021.11.17-2021.11.14",
+    "images": [
+      "https://a0.muscache.com/im/pictures/7e48626d-4141-4505-8197-4dac733a5005.jpg?im_w=1200"
+    ],
+    "category": "해변근처"
+  },
+  {
+    "id": 9,
+    "address": "제주도 제주시",
+    "price": 138635,
+    "distance": "389km 거리",
+    "date": "2021.11.26-2021.12.3",
+    "images": [
+      "https://a0.muscache.com/im/pictures/5092d377-be60-4b5d-95e7-ad59a767fcae.jpg?im_w=1200"
+    ],
+    "category": "해변근처"
+  },
+  {
+    "id": 10,
+    "address": "Gujwa-eup, Jeju-si,제주도",
+    "price": 116625,
+    "distance": "375km 거리",
+    "date": "2021.10.31-2021.11.7",
+    "images": [
+      "https://a0.muscache.com/im/pictures/f09523a1-79d4-4587-ad07-7339e5e5ad64.jpg?im_w=1200"
+    ],
+    "category": "해변근처"
+  },
+  {
+    "id": 11,
+    "address": "Bongpyeong-myeon, Pyeongchang-gun, 강원도",
+    "price": 191449,
+    "distance": "139km 거리",
+    "date": "2021.12.26-2022.1.2",
+    "images": [
+      "https://a0.muscache.com/im/pictures/cdd20f1d-9e8c-4848-895f-16d3667abb03.jpg?im_w=1200"
+    ],
+    "category": "해변근처"
+  },
+  {
+    "id": 12,
+    "address": "Ano Mera , Myconos",
+    "price": 1726874,
+    "distance": "8477km 거리",
+    "date": "2021.10.22-2021.10.29",
+    "images": [
+      "https://a0.muscache.com/im/pictures/a2a8df4d-3f77-4d2f-b205-3b4380922ee1.jpg?im_w=1200"
+    ],
+    "category": "해변근처"
+  },
+  {
+    "id": 13,
+    "address": "서울, 한국",
+    "price": 173459,
+    "distance": "8477km 거리",
+    "date": "9월 11일~16일",
+    "images": [
+      "https://a0.muscache.com/im/pictures/miso/Hosting-926638381418918258/original/ff037c2c-2d78-4625-a8e7-34efbf241544.jpeg?im_w=720"
+    ],
+    "category": "최고의 전망"
+  },
+  {
+    "id": 14,
+    "address": "마포구, 한국",
+    "price": 173459,
+    "distance": "8477km 거리",
+    "date": "9월 11일~16일",
+    "images": [
+      "https://a0.muscache.com/im/pictures/035e455f-e549-4c9f-92ff-d3d4cd75103d.jpg?im_w=720"
+    ],
+    "category": "최고의 전망"
+  },
+  {
+    "id": 15,
+    "address": "양평군, 한국",
+    "price": 173459,
+    "distance": "8477km 거리",
+    "date": "9월 11일~16일",
+    "images": [
+      "https://a0.muscache.com/im/pictures/miso/Hosting-52769003/original/c46d53d6-10aa-47d5-8787-8dba7bf11cd8.jpeg?im_w=720"
+    ],
+    "category": "최고의 전망"
+  },
+  {
+    "id": 16,
+    "address": "송파구, 한국",
+    "price": 173459,
+    "distance": "8477km 거리",
+    "date": "9월 11일~16일",
+    "images": [
+      "https://a0.muscache.com/im/pictures/b80cf453-296f-48d7-a9bb-1d3457be9d95.jpg?im_w=720"
+    ],
+    "category": "최고의 전망"
+  },
+  {
+    "id": 17,
+    "address": "송파구, 핀란드",
+    "price": 173459,
+    "distance": "8477km 거리",
+    "date": "9월 11일~16일",
+    "images": [
+      "https://a0.muscache.com/im/pictures/miso/Hosting-52086975/original/017465f1-e5b3-43ff-8d92-facd828f8fc2.jpeg?im_w=720"
+    ],
+    "category": "인기급상승"
+  },
+  {
+    "id": 18,
+    "address": "송파구, 캐나다",
+    "price": 173459,
+    "distance": "8477km 거리",
+    "date": "9월 11일~16일",
+    "images": [
+      "https://a0.muscache.com/im/pictures/miso/Hosting-46695796/original/38bc8081-9415-453a-b8bf-9f4aeb146819.jpeg?im_w=720"
+    ],
+    "category": "인기급상승"
+  },
+  {
+    "id": 19,
+    "address": "인도네시아",
+    "price": 173459,
+    "distance": "8477km 거리",
+    "date": "9월 11일~16일",
+    "images": [
+      "https://a0.muscache.com/im/pictures/4a5c629b-9c92-450e-8d8f-995875798838.jpg?im_w=720"
+    ],
+    "category": "인기급상승"
+  },
+  {
+    "id": 20,
+    "address": "오스투니, 이탈리아",
+    "price": 173459,
+    "distance": "8477km 거리",
+    "date": "9월 11일~16일",
+    "images": [
+      "https://a0.muscache.com/im/pictures/miso/Hosting-432044/original/f2d20695-680c-4637-b72c-80238c0dd384.jpeg?im_w=720"
+    ],
+    "category": "인기급상승"
+  },
+  {
+    "id": 21,
+    "address": "가평군, 경기도",
+    "price": 173459,
+    "distance": "837km 거리",
+    "date": "9월 11일~16일",
+    "images": [
+      "https://a0.muscache.com/im/pictures/miso/Hosting-854745696847346650/original/b5e8cbf1-0a01-4b2c-91fd-a4ba3e7af771.jpeg?im_w=720"
+    ],
+    "category": "캠핑장"
+  },
+  {
+    "id": 22,
+    "address": "자카르타, 인도네시아",
+    "price": 173459,
+    "distance": "12837km 거리",
+    "date": "9월 11일~16일",
+    "images": [
+      "https://a0.muscache.com/im/pictures/miso/Hosting-818350395881615522/original/5c3e3d63-2337-4f9a-b06e-f2a225902d5d.jpeg?im_w=720"
+    ],
+    "category": "캠핑장"
+  },
+  {
+    "id": 23,
+    "address": "인도네시아",
+    "price": 173459,
+    "distance": "837km 거리",
+    "date": "9월 11일~16일",
+    "images": [
+      "https://a0.muscache.com/im/pictures/miso/Hosting-592206917158212969/original/18398891-52dd-4f40-9fee-37ac27cbe90c.jpeg?im_w=720"
+    ],
+    "category": "캠핑장"
+  },
+  {
+    "id": 24,
+    "address": "대만",
+    "price": 173459,
+    "distance": "1837km 거리",
+    "date": "9월 11일~16일",
+    "images": [
+      "https://a0.muscache.com/im/pictures/miso/Hosting-790104764371300975/original/4bcc9c3a-b52c-424a-b4d7-13c48117ed64.jpeg?im_w=720"
+    ],
+    "category": "캠핑장"
+  }
+]

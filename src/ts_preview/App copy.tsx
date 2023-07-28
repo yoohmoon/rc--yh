@@ -1,25 +1,8 @@
-import React from 'react';
-import Header from './components/Header/Header';
-import MainSection from './components/Main/MainSection';
-
-const App = () => {
-  return (
-    <div>
-      <Header />
-      <MainSection />
-    </div>
-  );
-};
-
-export default App;
-
-/* 
 import React, { useState } from 'react';
 import './App.css';
-import Store from './ts_preview/Store';
-import { Address, Restaurant } from './model/restaurant';
-import BestMenu from './ts_preview/BestMenu';
-
+import Store from './Store';
+import { Address, Restaurant } from '../model/restaurant';
+import BestMenu from './BestMenu';
 
 let data: Restaurant = {
   name: '식당',
@@ -52,4 +35,5 @@ const App: React.FC = () => {
     </div>
   );
 };
- */
+
+export default App;
