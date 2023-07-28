@@ -47,56 +47,64 @@ const FilterNav = () => {
   const [clickedFilterIndex, setClickedFilterIndex] = useState(0);
 
   return (
-    <FilterNavContainer>
-      <PrevArrowBtn onClick={handlePrevBtn} slidePx={slidePx}>
-        <FontAwesomeIcon icon={faChevronLeft} />
-      </PrevArrowBtn>
-      <TabList>
-        {TAB_DATA_LIST.map((item) => (
-          // <ItemWrapper>
-          <TabItem key={item.id} slidePx={slidePx}>
-            <TabImg src={item.src} alt={item.title} />
-            <TabTitle>{item.title}</TabTitle>
-          </TabItem>
-          // </ItemWrapper>
-        ))}
-      </TabList>
-      <NextArrowBtn
-        onClick={handleNextBtn}
-        slidePx={slidePx}
-        maxTranslateX={-MAX_TRANSLATE_X}
-      >
-        <FontAwesomeIcon icon={faChevronRight} />
-      </NextArrowBtn>
-      <FilterBtnWrapper>
-        <FontAwesomeIcon icon={faFilter} />
-        <span>필터</span>
-      </FilterBtnWrapper>
-    </FilterNavContainer>
+    <Container>
+      <FilterNavContainer>
+        <PrevArrowBtn onClick={handlePrevBtn} slidePx={slidePx}>
+          <FontAwesomeIcon icon={faChevronLeft} />
+        </PrevArrowBtn>
+        <TabList>
+          {TAB_DATA_LIST.map((item) => (
+            // <ItemWrapper>
+            <TabItem key={item.id} slidePx={slidePx}>
+              <TabImg src={item.src} alt={item.title} />
+              <TabTitle>{item.title}</TabTitle>
+            </TabItem>
+            // </ItemWrapper>
+          ))}
+        </TabList>
+        <NextArrowBtn
+          onClick={handleNextBtn}
+          slidePx={slidePx}
+          maxTranslateX={-MAX_TRANSLATE_X}
+        >
+          <FontAwesomeIcon icon={faChevronRight} />
+        </NextArrowBtn>
+        <FilterBtnWrapper>
+          <FontAwesomeIcon icon={faFilter} />
+          <span>필터</span>
+        </FilterBtnWrapper>
+      </FilterNavContainer>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  padding-top: 20px;
+`;
 
 const FilterNavContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 10px;
   height: 80px;
   padding: 0 80px;
 `;
 
 const TabList = styled.ul`
-  flex-grow: 0.7;
+  /* flex-grow: 2; */
+  flex-basis: 90%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
 
-  gap: 35px;
-  background-color: #ddd;
+  gap: 40px;
+  /* background-color: #ddd; */
 
   overflow: hidden;
 `;
 
-const ItemWrapper = styled.div``;
+const ItemWrapper = styled.input``;
 
 // 한개 width 약 56px + gap 35px => 91px
 // 5개 이동시, 455px => 420px
@@ -115,11 +123,12 @@ const TabItem = styled.li<TabItemProps>`
 
   /* transform: translateX(-420px); */
   transform: translateX(${(props) => props.slidePx}px);
-  transition: translateX ease-in-out 0.6s;
+  transition: transform 0.8s ease-in-out;
 
   &:hover {
-    background-color: aliceblue;
+    /* background-color: ${(props) => props.theme.borderGray}; */
     color: ${(props) => props.theme.mainBlack};
+    cursor: pointer;
   }
 `;
 
@@ -136,6 +145,7 @@ const TabTitle = styled.div`
 `;
 
 const PrevArrowBtn = styled.button<TabItemProps>`
+  /* flex-grow: 0.5; */
   display: ${(props) => (props.slidePx === 0 ? 'none' : 'inline-block')};
   /* display: ${(props) => props.slidePx}===0 ? 'none' : ''; */
   width: 30px;
@@ -154,6 +164,7 @@ const NextArrowBtn = styled.button<{ slidePx: number; maxTranslateX: number }>`
 `;
 
 const FilterBtnWrapper = styled.div`
+  /* flex-grow: 1; */
   display: flex;
   justify-content: space-between;
   align-items: center;

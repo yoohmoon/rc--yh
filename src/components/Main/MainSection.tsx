@@ -39,6 +39,7 @@ const MainSection = () => {
 
 const Container = styled.main`
   padding: 0 80px;
+  padding-top: 20px;
 `;
 
 const Grid = styled.div`
