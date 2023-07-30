@@ -12,23 +12,19 @@ interface TabItemProps {
   slidePx: number;
 }
 
-const FilterNav = () => {
-  /*   const ITEM_WIDTH = 56; // Width of each item
-  const ITEM_GAP = 35; // Gap between items
-  const ITEM_TOTAL_WIDTH = ITEM_WIDTH + ITEM_GAP; // Total width of each item including gap
-  const ITEMS_PER_MOVE = 5; // Number of items to move per click
-  const MOVE_DISTANCE = ITEM_TOTAL_WIDTH * ITEMS_PER_MOVE;
-  const TOTAL_ITEMS = TAB_DATA_LIST.length; // Total number of items
-  // const MAX_TRANSLATE_X = ITEM_TOTAL_WIDTH * TOTAL_ITEMS - MOVE_DISTANCE;
-  const MAX_TRANSLATE_X = ITEM_TOTAL_WIDTH * TOTAL_ITEMS; */
+interface FilterNavProps {
+  scrollY: number;
+}
 
+const FilterNav: React.FC<FilterNavProps> = ({ scrollY }) => {
+  // carousel logic
   const ITEM_WIDTH = 56; // Width of each item
   const ITEM_GAP = 35; // Gap between items
   const ITEM_TOTAL_WIDTH = ITEM_WIDTH + ITEM_GAP; // Total width of each item including gap
   const ITEMS_PER_MOVE = 5; // Number of items to move per click
   const MOVE_DISTANCE = ITEM_TOTAL_WIDTH * ITEMS_PER_MOVE;
   const TOTAL_ITEMS = TAB_DATA_LIST.length; // Total number of items
-  const VISIBLE_ITEMS = 24; // Replace with your actual visible items count
+  const VISIBLE_ITEMS = 24; // Replace with actual visible items count
   const MAX_TRANSLATE_X =
     ITEM_TOTAL_WIDTH * TOTAL_ITEMS - ITEM_TOTAL_WIDTH * VISIBLE_ITEMS;
 
@@ -47,7 +43,7 @@ const FilterNav = () => {
   const [clickedFilterIndex, setClickedFilterIndex] = useState(0);
 
   return (
-    <Container>
+    <Container scrollY={scrollY}>
       <FilterNavContainer>
         <PrevArrowBtn onClick={handlePrevBtn} slidePx={slidePx}>
           <FontAwesomeIcon icon={faChevronLeft} />
@@ -78,8 +74,9 @@ const FilterNav = () => {
   );
 };
 
-const Container = styled.div`
-  padding-top: 20px;
+const Container = styled.div<{ scrollY: number }>`
+  padding-top: ${(props) => (props.scrollY > 28 ? '0px' : '20px')};
+  transition: padding-top 0.05s ease-in-out;
 `;
 
 const FilterNavContainer = styled.div`
