@@ -66,7 +66,7 @@ const FilterNav: React.FC<FilterNavProps> = ({ scrollY }) => {
           <FontAwesomeIcon icon={faChevronRight} />
         </NextArrowBtn>
         <FilterBtnWrapper>
-          <FontAwesomeIcon icon={faFilter} />
+          <FontAwesomeIcon icon={faFilter} size='xs' />
           <span>필터</span>
         </FilterBtnWrapper>
       </FilterNavContainer>
@@ -83,7 +83,7 @@ const FilterNavContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
   height: 80px;
   padding: 0 80px;
 `;
@@ -95,7 +95,7 @@ const TabList = styled.ul`
   justify-content: flex-start;
   align-items: center;
 
-  gap: 40px;
+  gap: 50px;
   /* background-color: #ddd; */
 
   overflow: hidden;
@@ -167,9 +167,10 @@ const FilterBtnWrapper = styled.div`
   align-items: center;
   width: 80px;
   height: 45px;
-  padding: 0 12px;
+  padding: 4px 17px;
   border: 1px solid ${(props) => props.theme.borderGray};
   border-radius: 10px;
+  font-size: 14px;
 `;
 
 export default FilterNav;
