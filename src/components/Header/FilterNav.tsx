@@ -10,25 +10,22 @@ import { TAB_DATA_LIST } from './data';
 
 interface TabItemProps {
   slidePx: number;
+  isActive?: boolean;
 }
 
-const FilterNav = () => {
-  /*   const ITEM_WIDTH = 56; // Width of each item
-  const ITEM_GAP = 35; // Gap between items
-  const ITEM_TOTAL_WIDTH = ITEM_WIDTH + ITEM_GAP; // Total width of each item including gap
-  const ITEMS_PER_MOVE = 5; // Number of items to move per click
-  const MOVE_DISTANCE = ITEM_TOTAL_WIDTH * ITEMS_PER_MOVE;
-  const TOTAL_ITEMS = TAB_DATA_LIST.length; // Total number of items
-  // const MAX_TRANSLATE_X = ITEM_TOTAL_WIDTH * TOTAL_ITEMS - MOVE_DISTANCE;
-  const MAX_TRANSLATE_X = ITEM_TOTAL_WIDTH * TOTAL_ITEMS; */
+interface FilterNavProps {
+  scrollY: number;
+}
 
+const FilterNav: React.FC<FilterNavProps> = ({ scrollY }) => {
+  // carousel logic
   const ITEM_WIDTH = 56; // Width of each item
   const ITEM_GAP = 35; // Gap between items
   const ITEM_TOTAL_WIDTH = ITEM_WIDTH + ITEM_GAP; // Total width of each item including gap
   const ITEMS_PER_MOVE = 5; // Number of items to move per click
   const MOVE_DISTANCE = ITEM_TOTAL_WIDTH * ITEMS_PER_MOVE;
   const TOTAL_ITEMS = TAB_DATA_LIST.length; // Total number of items
-  const VISIBLE_ITEMS = 24; // Replace with your actual visible items count
+  const VISIBLE_ITEMS = 24; // Replace with actual visible items count
   const MAX_TRANSLATE_X =
     ITEM_TOTAL_WIDTH * TOTAL_ITEMS - ITEM_TOTAL_WIDTH * VISIBLE_ITEMS;
 
@@ -43,60 +40,78 @@ const FilterNav = () => {
       setSlidePx(Math.max(slidePx - MOVE_DISTANCE, -MAX_TRANSLATE_X));
   };
 
-  // tab func with filter
+  // 밑줄 indicator + tab func with filter
   const [clickedFilterIndex, setClickedFilterIndex] = useState(0);
+  const handleCategoryClick = (id: number) => {
+    setClickedFilterIndex(id);
+  };
 
   return (
-    <FilterNavContainer>
-      <PrevArrowBtn onClick={handlePrevBtn} slidePx={slidePx}>
-        <FontAwesomeIcon icon={faChevronLeft} />
-      </PrevArrowBtn>
-      <TabList>
-        {TAB_DATA_LIST.map((item) => (
-          // <ItemWrapper>
-          <TabItem key={item.id} slidePx={slidePx}>
-            <TabImg src={item.src} alt={item.title} />
-            <TabTitle>{item.title}</TabTitle>
-          </TabItem>
-          // </ItemWrapper>
-        ))}
-      </TabList>
-      <NextArrowBtn
-        onClick={handleNextBtn}
-        slidePx={slidePx}
-        maxTranslateX={-MAX_TRANSLATE_X}
-      >
-        <FontAwesomeIcon icon={faChevronRight} />
-      </NextArrowBtn>
-      <FilterBtnWrapper>
-        <FontAwesomeIcon icon={faFilter} />
-        <span>필터</span>
-      </FilterBtnWrapper>
-    </FilterNavContainer>
+    <Container scrollY={scrollY}>
+      <FilterNavContainer>
+        <PrevArrowBtn onClick={handlePrevBtn} slidePx={slidePx}>
+          <FontAwesomeIcon icon={faChevronLeft} />
+        </PrevArrowBtn>
+        <TabList>
+          {TAB_DATA_LIST.map((item) => (
+            <ItemBox>
+              <TabItem
+                key={item.id}
+                slidePx={slidePx}
+                onClick={() => handleCategoryClick(item.id)}
+                isActive={item.id === clickedFilterIndex}
+              >
+                <TabImg src={item.src} alt={item.title} />
+                <TabTitle>{item.title}</TabTitle>
+              </TabItem>
+            </ItemBox>
+          ))}
+        </TabList>
+        <NextArrowBtn
+          onClick={handleNextBtn}
+          slidePx={slidePx}
+          maxTranslateX={-MAX_TRANSLATE_X}
+        >
+          <FontAwesomeIcon icon={faChevronRight} />
+        </NextArrowBtn>
+        <FilterBtnWrapper>
+          <FontAwesomeIcon icon={faFilter} size='xs' />
+          <span>필터</span>
+        </FilterBtnWrapper>
+      </FilterNavContainer>
+    </Container>
   );
 };
+
+const Container = styled.div<{ scrollY: number }>`
+  padding-top: ${(props) => (props.scrollY > 28 ? '0px' : '20px')};
+  transition: padding-top 0.05s ease-in-out;
+`;
 
 const FilterNavContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 20px;
   height: 80px;
   padding: 0 80px;
 `;
 
 const TabList = styled.ul`
-  flex-grow: 0.7;
+  /* flex-grow: 2; */
+  flex-basis: 90%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
 
-  gap: 35px;
-  background-color: #ddd;
-
+  gap: 50px;
   overflow: hidden;
 `;
 
-const ItemWrapper = styled.div``;
+const ItemBox = styled.div`
+  position: relative;
+  height: 80px;
+`;
 
 // 한개 width 약 56px + gap 35px => 91px
 // 5개 이동시, 455px => 420px
@@ -107,7 +122,7 @@ const TabItem = styled.li<TabItemProps>`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 56px;
+  /* width: 56px; */
   gap: 9px;
   height: 100%;
   padding: 4px 0;
@@ -115,11 +130,31 @@ const TabItem = styled.li<TabItemProps>`
 
   /* transform: translateX(-420px); */
   transform: translateX(${(props) => props.slidePx}px);
-  transition: translateX ease-in-out 0.6s;
+  transition: transform 0.8s ease-in-out;
 
   &:hover {
-    background-color: aliceblue;
     color: ${(props) => props.theme.mainBlack};
+    cursor: pointer;
+
+    &::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: ${(props) => props.theme.borderGray};
+      position: absolute;
+      bottom: 0px;
+    }
+  }
+
+  &::after {
+    content: '';
+    display: ${(props) => (props.isActive ? 'block' : 'none')};
+    width: 100%;
+    height: 2px;
+    background-color: ${(props) => props.theme.mainBlack};
+    position: absolute;
+    bottom: 0px;
   }
 `;
 
@@ -136,6 +171,7 @@ const TabTitle = styled.div`
 `;
 
 const PrevArrowBtn = styled.button<TabItemProps>`
+  /* flex-grow: 0.5; */
   display: ${(props) => (props.slidePx === 0 ? 'none' : 'inline-block')};
   /* display: ${(props) => props.slidePx}===0 ? 'none' : ''; */
   width: 30px;
@@ -154,14 +190,16 @@ const NextArrowBtn = styled.button<{ slidePx: number; maxTranslateX: number }>`
 `;
 
 const FilterBtnWrapper = styled.div`
+  /* flex-grow: 1; */
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 80px;
   height: 45px;
-  padding: 0 12px;
+  padding: 4px 17px;
   border: 1px solid ${(props) => props.theme.borderGray};
   border-radius: 10px;
+  font-size: 14px;
 `;
 
 export default FilterNav;
