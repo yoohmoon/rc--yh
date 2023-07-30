@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { styled } from 'styled-components';
 import Logo from './Logo';
 import Lang from './Lang';
@@ -8,6 +8,11 @@ import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 const HeadNav = () => {
+  const [showUserDropdown, setShowUserDropdown] = useState(false);
+  const handleUserDropdown = () => {
+    setShowUserDropdown(!showUserDropdown);
+  };
+
   return (
     <HeaderContainer>
       <LogoBox>
@@ -36,7 +41,7 @@ const HeadNav = () => {
           <LangBox>
             <Lang />
           </LangBox>
-          <UserNav>
+          <UserNav onClick={handleUserDropdown}>
             <FontAwesomeIcon icon={faBars} size='lg' className='barsIcon' />
             <FontAwesomeIcon
               icon={faCircleUser}
@@ -45,6 +50,7 @@ const HeadNav = () => {
             />
           </UserNav>
         </ul>
+        <UserMenu showUserDropdown={showUserDropdown}>로그인</UserMenu>
       </NavLinks>
     </HeaderContainer>
   );
@@ -72,11 +78,19 @@ const SearchBar = styled.div`
   height: 50px;
   border: 1px solid ${(props) => props.theme.borderGray};
   border-radius: 50px;
+  transition: box-shadow 0.3s;
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.2s;
+  }
 `;
 
 const NavLinks = styled.nav`
   flex-grow: 1;
   flex-basis: 140px;
+  position: relative;
   ul {
     display: flex;
     justify-content: flex-end;
@@ -130,6 +144,7 @@ const HostBox = styled.li`
   font-weight: 700;
 
   &:hover {
+    cursor: pointer;
     background-color: ${(props) => props.theme.bgLightGray};
   }
 `;
@@ -141,6 +156,7 @@ const LangBox = styled.li`
   margin-right: 8px;
 
   &:hover {
+    cursor: pointer;
     background-color: ${(props) => props.theme.bgLightGray};
   }
 `;
@@ -154,6 +170,13 @@ const UserNav = styled.li`
   padding: 5px 5px 5px 12px;
   border: 1px solid ${(props) => props.theme.borderGray};
   border-radius: 80px;
+  transition: box-shadow 0.2s;
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.28);
+    transition: box-shadow 0.3s;
+  }
 
   .barsIcon {
     color: ${(props) => props.theme.mainBlack};
@@ -162,6 +185,16 @@ const UserNav = styled.li`
   .userIcon {
     color: ${(props) => props.theme.darkGray};
   }
+`;
+
+const UserMenu = styled.div<{ showUserDropdown: boolean }>`
+  position: absolute;
+  right: 0;
+  z-index: 2;
+  display: ${(props) => (props.showUserDropdown ? 'block' : 'none')};
+  width: 200px;
+  height: 400px;
+  background-color: antiquewhite;
 `;
 
 export default HeadNav;
