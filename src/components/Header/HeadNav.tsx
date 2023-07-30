@@ -10,7 +10,9 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 const HeadNav = () => {
   return (
     <HeaderContainer>
-      <Logo />
+      <LogoBox>
+        <Logo />
+      </LogoBox>
       <SearchBar>
         <DestBtn>어디든지</DestBtn>
         <Separator></Separator>
@@ -57,6 +59,11 @@ const HeaderContainer = styled.div`
   border-bottom: 1px solid ${(props) => props.theme.spLightGray};
 `;
 
+const LogoBox = styled.div`
+  flex-grow: 1;
+  flex-basis: 140px;
+`;
+
 const SearchBar = styled.div`
   /* margin: 0 auto; */
   display: flex;
@@ -68,9 +75,11 @@ const SearchBar = styled.div`
 `;
 
 const NavLinks = styled.nav`
+  flex-grow: 1;
+  flex-basis: 140px;
   ul {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
   }
 `;
@@ -114,9 +123,11 @@ const Separator = styled.span`
 
 const HostBox = styled.li`
   height: 45px;
-  line-height: 25px;
+  line-height: 24px;
   padding: 12px;
   border-radius: 80px;
+  font-size: 14px;
+  font-weight: 700;
 
   &:hover {
     background-color: ${(props) => props.theme.bgLightGray};
