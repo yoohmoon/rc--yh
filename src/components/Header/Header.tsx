@@ -12,6 +12,12 @@ const Header = () => {
   );
 };
 
-const HeaderWrapper = styled.header``;
+const HeaderWrapper = styled.header`
+  position: sticky;
+  top: 0;
+  left: 0;
+  height: 180px;
+  background-color: #fff;
+`;
 
 export default Header;
