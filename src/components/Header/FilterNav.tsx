@@ -10,6 +10,7 @@ import { TAB_DATA_LIST } from './data';
 
 interface TabItemProps {
   slidePx: number;
+  isActive?: boolean;
 }
 
 interface FilterNavProps {
@@ -39,8 +40,11 @@ const FilterNav: React.FC<FilterNavProps> = ({ scrollY }) => {
       setSlidePx(Math.max(slidePx - MOVE_DISTANCE, -MAX_TRANSLATE_X));
   };
 
-  // tab func with filter
+  // 밑줄 indicator + tab func with filter
   const [clickedFilterIndex, setClickedFilterIndex] = useState(0);
+  const handleCategoryClick = (id: number) => {
+    setClickedFilterIndex(id);
+  };
 
   return (
     <Container scrollY={scrollY}>
@@ -50,12 +54,17 @@ const FilterNav: React.FC<FilterNavProps> = ({ scrollY }) => {
         </PrevArrowBtn>
         <TabList>
           {TAB_DATA_LIST.map((item) => (
-            // <ItemWrapper>
-            <TabItem key={item.id} slidePx={slidePx}>
-              <TabImg src={item.src} alt={item.title} />
-              <TabTitle>{item.title}</TabTitle>
-            </TabItem>
-            // </ItemWrapper>
+            <ItemBox>
+              <TabItem
+                key={item.id}
+                slidePx={slidePx}
+                onClick={() => handleCategoryClick(item.id)}
+                isActive={item.id === clickedFilterIndex}
+              >
+                <TabImg src={item.src} alt={item.title} />
+                <TabTitle>{item.title}</TabTitle>
+              </TabItem>
+            </ItemBox>
           ))}
         </TabList>
         <NextArrowBtn
@@ -96,12 +105,13 @@ const TabList = styled.ul`
   align-items: center;
 
   gap: 50px;
-  /* background-color: #ddd; */
-
   overflow: hidden;
 `;
 
-const ItemWrapper = styled.input``;
+const ItemBox = styled.div`
+  position: relative;
+  height: 80px;
+`;
 
 // 한개 width 약 56px + gap 35px => 91px
 // 5개 이동시, 455px => 420px
@@ -112,7 +122,7 @@ const TabItem = styled.li<TabItemProps>`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 56px;
+  /* width: 56px; */
   gap: 9px;
   height: 100%;
   padding: 4px 0;
@@ -123,9 +133,28 @@ const TabItem = styled.li<TabItemProps>`
   transition: transform 0.8s ease-in-out;
 
   &:hover {
-    /* background-color: ${(props) => props.theme.borderGray}; */
     color: ${(props) => props.theme.mainBlack};
     cursor: pointer;
+
+    &::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: ${(props) => props.theme.borderGray};
+      position: absolute;
+      bottom: 0px;
+    }
+  }
+
+  &::after {
+    content: '';
+    display: ${(props) => (props.isActive ? 'block' : 'none')};
+    width: 100%;
+    height: 2px;
+    background-color: ${(props) => props.theme.mainBlack};
+    position: absolute;
+    bottom: 0px;
   }
 `;
 
