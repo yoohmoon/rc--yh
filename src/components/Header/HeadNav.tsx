@@ -25,7 +25,7 @@ const HeadNav = () => {
         <Separator></Separator>
         <GuestBtn>
           <IconWrapper>
-            <span>게스트 추가</span>
+            <GuestText>게스트 추가</GuestText>
             <GlassBox>
               <FontAwesomeIcon
                 icon={faMagnifyingGlass}
@@ -68,6 +68,15 @@ const HeaderContainer = styled.div`
 const LogoBox = styled.div`
   flex-grow: 1;
   flex-basis: 140px;
+
+  @media screen and (max-width: 1130px) {
+    flex-basis: auto;
+  }
+
+  @media screen and (max-width: 950px) {
+    flex-grow: 0;
+    flex-basis: auto;
+  }
 `;
 
 const SearchBar = styled.div`
@@ -90,7 +99,13 @@ const SearchBar = styled.div`
 const NavLinks = styled.nav`
   flex-grow: 1;
   flex-basis: 140px;
+  /* flex-basis: auto; */
   position: relative;
+
+  @media screen and (max-width: 1130px) {
+    flex-basis: auto;
+  }
+
   ul {
     display: flex;
     justify-content: flex-end;
@@ -100,9 +115,23 @@ const NavLinks = styled.nav`
 
 const DestBtn = styled.button`
   flex-grow: 1;
+  font-weight: 700;
+
+  @media screen and (max-width: 800px) {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 `;
 const DateBtn = styled.button`
   flex-grow: 1;
+  font-weight: 700;
+
+  @media screen and (max-width: 800px) {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 `;
 const GuestBtn = styled.button`
   flex-grow: 2.6;
@@ -112,6 +141,16 @@ const IconWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+`;
+
+const GuestText = styled.div`
+  @media screen and (max-width: 800px) {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 `;
 
 const GlassBox = styled.div`
@@ -142,6 +181,7 @@ const HostBox = styled.li`
   border-radius: 80px;
   font-size: 14px;
   font-weight: 700;
+  white-space: nowrap;
 
   &:hover {
     cursor: pointer;
