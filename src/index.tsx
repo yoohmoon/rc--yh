@@ -18,6 +18,8 @@ import TodoList from './lecture/todo/TodoList';
 import MainSection from './components/Main/MainSection';
 // import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import Rooms from './pages/Rooms';
+import Main from './pages/Main';
 
 // const router = createBrowserRouter([
 //   { path: '/', element: <TodoList /> },
@@ -43,10 +45,15 @@ root.render(
 
   // </RouterProvider>
 
-  <RecoilRoot>
-    <GlobalStyle />
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
-  </RecoilRoot>
+  <Router>
+    <RecoilRoot>
+      <GlobalStyle />
+      <ThemeProvider theme={theme}>
+        <Routes>
+          <Route path='/' element={<Main />} />
+          <Route path='/rooms' element={<Rooms />} />
+        </Routes>
+      </ThemeProvider>
+    </RecoilRoot>
+  </Router>
 );

@@ -1,12 +1,10 @@
 import React from 'react';
-import Header from './components/Header/Header';
-import MainSection from './components/Main/MainSection';
+import Main from './pages/Main';
 
 const App = () => {
   return (
     <div>
-      <Header />
-      <MainSection />
+      <Main />
     </div>
   );
 };
