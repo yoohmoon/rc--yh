@@ -22,6 +22,16 @@ const Svg = styled.svg`
   width: 102px;
   /* width: 30px; */
   height: 32px;
+
+  @media screen and (max-width: 1130px) {
+    path:last-child {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 950px) {
+    width: 45px;
+  }
 `;
 
 export default Logo;

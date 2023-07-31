@@ -23,18 +23,22 @@ const Card: React.FC<CardProps> = ({ data }) => {
     for (let i = 0; i < priceArr?.length; i++) {
       if (i > 0 && i % 3 === 0) {
         formattedPrice = ',' + formattedPrice;
+        console.log(formattedPrice);
       }
       formattedPrice = priceArr[i] + formattedPrice;
+      console.log('in question! ', i, formattedPrice);
     }
 
     return formattedPrice;
   };
 
+  console.log(formatPrice(159000));
+
   return (
     <CardContainer>
-      {/* <ImgBox> */}
-      <ImgContainer url={data.images[0]} />
-      {/* </ImgBox> */}
+      <ImgContainer>
+        <img src={data.images[0]} alt={data.address} />
+      </ImgContainer>
       <TextWrapper>
         <DescContainer>
           <Address>{data.address}</Address>
@@ -50,31 +54,31 @@ const Card: React.FC<CardProps> = ({ data }) => {
 };
 
 const CardContainer = styled.div`
-  /* display: grid;
-  grid-template-rows: 2fr 1fr; */
+  display: grid;
+  grid-template-rows: 2fr 1fr;
   /* grid-auto-rows: 100px; */
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
   /* justify-content: space-between; */
   /* border: 1px solid #e0e0e0; */
   /* overflow: hidden; */
   width: 100%;
-  cursor: pointer;
-  padding-bottom: 35px;
 `;
 
-const ImgContainer = styled.div<{ url: string }>`
+const ImgContainer = styled.div`
   width: 100%;
-  height: 0;
-  padding-bottom: 95%;
-  background-image: url(${(props) => props.url});
-  background-size: cover;
-  background-repeat: no-repeat;
-  border-radius: 12px;
+  height: 100%;
+  /* overflow: hidden; */
+
+  img {
+    /* width: 320px; */
+    /* height: 304px; */
+    border-radius: 12px;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
 `;
-
-const ImgBox = styled.div``;
-
 const TextWrapper = styled.div``;
 
 const DescContainer = styled.div`
@@ -87,11 +91,6 @@ const DescContainer = styled.div`
 `;
 
 const Address = styled.h5`
-  display: -webkit-box;
-  -webkit-line-clamp: 1; //표시할 최대 줄 수
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
   font-weight: 700;
 `;
 
