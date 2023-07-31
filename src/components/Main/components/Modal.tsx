@@ -4,6 +4,8 @@ import { styled } from 'styled-components';
 import loginModal from '../../../store/loginModal';
 
 const Modal = () => {
+  // ➕ 아래에서 위로 등장하는 애니메이션 효과 추가
+
   const [openLoginModal, setOpenLoginModal] = useRecoilState(loginModal);
   const closeModal = () => {
     setOpenLoginModal(false);

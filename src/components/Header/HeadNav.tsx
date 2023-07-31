@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { styled } from 'styled-components';
 import Logo from './Logo';
 import Lang from './Lang';
@@ -10,7 +10,24 @@ import { useRecoilState } from 'recoil';
 import loginModal from '../../store/loginModal';
 
 const HeadNav = () => {
-  // ➕ UserDropdown UI 외부 클릭 시, 닫히기 기능
+  // ✅ UserDropdown UI 외부 클릭 시, 닫히기 기능
+  const userMenuRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    const clickOutsideUserMenu = (e: MouseEvent) => {
+      if (
+        userMenuRef.current &&
+        !userMenuRef.current.contains(e.target as Node)
+      ) {
+        setShowUserDropdown(false);
+      }
+    };
+    document.addEventListener('mousedown', clickOutsideUserMenu);
+
+    return () => {
+      document.removeEventListener('mousedown', clickOutsideUserMenu);
+    };
+  }, []);
+
   const [showUserDropdown, setShowUserDropdown] = useState(false);
   const handleUserDropdown = () => {
     setShowUserDropdown(!showUserDropdown);
@@ -59,7 +76,7 @@ const HeadNav = () => {
             />
           </UserNav>
         </ul>
-        <UserMenu showUserDropdown={showUserDropdown}>
+        <UserMenu showUserDropdown={showUserDropdown} ref={userMenuRef}>
           <li onClick={handleLoginModal}>회원가입</li>
           <li onClick={handleLoginModal}>로그인</li>
           <div>
