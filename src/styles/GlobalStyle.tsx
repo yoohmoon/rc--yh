@@ -15,5 +15,9 @@ const GlobalStyle = createGlobalStyle`
         cursor: pointer;
 
     }
+
+    li{
+        list-style: none;
+    }
 `;
 export default GlobalStyle;

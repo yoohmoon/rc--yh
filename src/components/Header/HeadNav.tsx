@@ -50,7 +50,16 @@ const HeadNav = () => {
             />
           </UserNav>
         </ul>
-        <UserMenu showUserDropdown={showUserDropdown}>로그인</UserMenu>
+        <UserMenu showUserDropdown={showUserDropdown}>
+          <li>회원가입</li>
+          <li>로그인</li>
+          <div>
+            <hr />
+          </div>
+
+          <li>당신의 공간을 에어비앤비하세요</li>
+          <li>도움말</li>
+        </UserMenu>
       </NavLinks>
     </HeaderContainer>
   );
@@ -229,12 +238,36 @@ const UserNav = styled.li`
 
 const UserMenu = styled.div<{ showUserDropdown: boolean }>`
   position: absolute;
+  top: 55px;
   right: 0;
   z-index: 2;
-  display: ${(props) => (props.showUserDropdown ? 'block' : 'none')};
-  width: 200px;
-  height: 400px;
-  background-color: antiquewhite;
+  display: ${(props) => (props.showUserDropdown ? 'flex' : 'none')};
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 240px;
+  height: 220px;
+  border-radius: 12px;
+  background-color: #fff;
+  /* box-shadow: 6px 10px 14px rgba(0, 0, 0, 0.28); */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
+  padding: 7px 0;
+
+  li {
+    display: flex;
+    align-items: center;
+    height: 80px;
+    padding-left: 15px;
+    font-size: 14px;
+
+    &:first-child {
+      font-weight: 700;
+    }
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.04);
+      cursor: pointer;
+    }
+  }
 `;
 
 export default HeadNav;
