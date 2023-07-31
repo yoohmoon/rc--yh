@@ -6,11 +6,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { useRecoilState } from 'recoil';
+import loginModal from '../../store/loginModal';
 
 const HeadNav = () => {
+  // ➕ UserDropdown UI 외부 클릭 시, 닫히기 기능
   const [showUserDropdown, setShowUserDropdown] = useState(false);
   const handleUserDropdown = () => {
     setShowUserDropdown(!showUserDropdown);
+  };
+
+  const [openLoginModal, setOpenLoginModal] = useRecoilState(loginModal);
+  const handleLoginModal = () => {
+    setOpenLoginModal(!openLoginModal);
+    setShowUserDropdown(false);
   };
 
   return (
@@ -51,14 +60,20 @@ const HeadNav = () => {
           </UserNav>
         </ul>
         <UserMenu showUserDropdown={showUserDropdown}>
-          <li>회원가입</li>
-          <li>로그인</li>
+          <li onClick={handleLoginModal}>회원가입</li>
+          <li onClick={handleLoginModal}>로그인</li>
           <div>
             <hr />
           </div>
 
-          <li>당신의 공간을 에어비앤비하세요</li>
-          <li>도움말</li>
+          <li>
+            <a href='https://www.airbnb.co.kr/host/homes'>
+              당신의 공간을 에어비앤비하세요
+            </a>
+          </li>
+          <li>
+            <a href='https://www.airbnb.co.kr/help?audience=guest'>도움말</a>
+          </li>
         </UserMenu>
       </NavLinks>
     </HeaderContainer>
@@ -258,6 +273,12 @@ const UserMenu = styled.div<{ showUserDropdown: boolean }>`
     height: 80px;
     padding-left: 15px;
     font-size: 14px;
+
+    a {
+      width: 100%;
+      line-height: 47px;
+      height: 100%;
+    }
 
     &:first-child {
       font-weight: 700;

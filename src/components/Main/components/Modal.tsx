@@ -1,10 +1,17 @@
 import React from 'react';
+import { useRecoilState } from 'recoil';
 import { styled } from 'styled-components';
+import loginModal from '../../../store/loginModal';
 
 const Modal = () => {
+  const [openLoginModal, setOpenLoginModal] = useRecoilState(loginModal);
+  const closeModal = () => {
+    setOpenLoginModal(false);
+  };
+
   return (
-    <Container>
-      <ModalContainer>
+    <Container modalState={openLoginModal} onClick={closeModal}>
+      <ModalContainer modalState={openLoginModal}>
         <ModalHeader>
           <h5>로그인 또는 회원가입</h5>
         </ModalHeader>
@@ -16,7 +23,10 @@ const Modal = () => {
   );
 };
 
-const Container = styled.div`
+const Container = styled.div<{ modalState: boolean }>`
+  display: ${(props) => (props.modalState ? 'flex' : 'none')};
+  justify-content: center;
+
   position: absolute;
   z-index: 2;
   width: 100%;
@@ -24,12 +34,10 @@ const Container = styled.div`
   background-color: rgba(0, 0, 0, 0.45);
   padding: 40px 0;
   /* margin: 0 auto; */
-
-  display: flex;
-  justify-content: center;
 `;
 
-const ModalContainer = styled.div`
+const ModalContainer = styled.div<{ modalState: boolean }>`
+  display: ${(props) => (props.modalState ? 'block' : 'none')};
   width: 570px;
   background-color: #fff;
   border-radius: 12px;
