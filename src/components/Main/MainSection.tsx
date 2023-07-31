@@ -28,11 +28,13 @@ const MainSection = () => {
 
   return (
     <Container>
-      <Grid>
-        {cardsData.map((card) => (
-          <Card key={card.id} data={card} />
-        ))}
-      </Grid>
+      <div>
+        <Grid>
+          {cardsData.map((card) => (
+            <Card key={card.id} data={card} />
+          ))}
+        </Grid>
+      </div>
     </Container>
   );
 };
@@ -48,6 +50,18 @@ const Grid = styled.div`
   /* grid-auto-rows: 400px; */
   /* grid-gap: 20px; */
   grid-column-gap: 20px;
+
+  @media screen and (max-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media screen and (max-width: 550px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `;
 
 export default MainSection;
