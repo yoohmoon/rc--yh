@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { styled } from 'styled-components';
-import loginModal from '../../../store/loginModal';
+import loginModal from '../../store/loginModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faX } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faX } from '@fortawesome/free-solid-svg-icons';
+import Button from '../Button';
+import FacebookLogo from './FacebookLogo';
 
 const Modal = () => {
   const [openLoginModal, setOpenLoginModal] = useRecoilState(loginModal);
@@ -47,6 +49,16 @@ const Modal = () => {
         </ModalHeader>
         <MainSection>
           <h4>에어비앤비에 오신 것을 환영합니다</h4>
+          <Button bgc='#e00b40ec'>계속</Button>
+          {/* <Button
+            icon={<FontAwesomeIcon icon={faEnvelope} size='lg' />}
+            border={true}
+          >
+            이메일로 로그인하기
+          </Button>
+          <Button icon={<FacebookLogo />} border={true}>
+            페이스북으로 로그인하기
+          </Button> */}
         </MainSection>
       </ModalContainer>
     </Container>
