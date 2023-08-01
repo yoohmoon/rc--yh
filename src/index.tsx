@@ -18,7 +18,7 @@ import TodoList from './lecture/todo/TodoList';
 import MainSection from './components/Main/MainSection';
 // import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import Rooms from './pages/Rooms';
+import Rooms from './pages/RoomDetail';
 import Main from './pages/Main';
 
 // const router = createBrowserRouter([

@@ -19,7 +19,7 @@ const Header = () => {
 
   return (
     <HeaderWrapper scrollY={scrollY}>
-      <HeadNav />
+      <HeadNav isDetail={false} />
       <FilterNav scrollY={scrollY} />
     </HeaderWrapper>
   );
