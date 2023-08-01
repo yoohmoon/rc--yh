@@ -8,6 +8,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { useRecoilState } from 'recoil';
 import loginModal from '../../store/loginModal';
 import SearchBar from './SearchBar';
+import { Link } from 'react-router-dom';
 
 export interface HeadNavProps {
   isDetail: boolean;
@@ -49,7 +50,9 @@ const HeadNav: React.FC<HeadNavProps> = ({ isDetail }) => {
   return (
     <HeaderContainer isDetail={isDetail}>
       <LogoBox>
-        <Logo />
+        <Link to='/'>
+          <Logo />
+        </Link>
       </LogoBox>
       <SearchBar isDetail={isDetail}>
         {isDetail ? '검색 시작하기' : '게스트 추가'}
