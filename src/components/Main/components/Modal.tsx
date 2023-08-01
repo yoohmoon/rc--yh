@@ -1,22 +1,48 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { styled } from 'styled-components';
 import loginModal from '../../../store/loginModal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faX } from '@fortawesome/free-solid-svg-icons';
 
 const Modal = () => {
-  // ➕ 모달 창 오픈 시, 배경 스크롤 막기 기능 추가
-
-  // ➕ 모달 내부 클릭 시, 모달 닫히는 버그 수정
-
   const [openLoginModal, setOpenLoginModal] = useRecoilState(loginModal);
+  // ➕ 모달 창 오픈 시, 배경 스크롤 막기 기능 추가
+  useEffect(() => {
+    if (openLoginModal) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [openLoginModal]);
+
   const closeModal = () => {
     setOpenLoginModal(false);
   };
 
   return (
     <Container modalState={openLoginModal} onClick={closeModal}>
-      <ModalContainer modalState={openLoginModal}>
+      <ModalContainer
+        modalState={openLoginModal}
+        onClick={(e) => {
+          // ✔️ 모달 내부 클릭 시, 모달 닫히는 버그 수정
+          e.stopPropagation();
+        }}
+      >
         <ModalHeader>
+          <IconWrapper>
+            <StyledCloseIcon
+              icon={faX}
+              size='sm'
+              onClick={() => {
+                setOpenLoginModal(false);
+              }}
+            />
+          </IconWrapper>
           <h5>로그인 또는 회원가입</h5>
         </ModalHeader>
         <MainSection>
@@ -31,7 +57,7 @@ const Container = styled.div<{ modalState: boolean }>`
   display: ${(props) => (props.modalState ? 'flex' : 'none')};
   justify-content: center;
 
-  position: absolute;
+  position: fixed;
   z-index: 2;
   width: 100%;
   height: 100%;
@@ -64,6 +90,7 @@ const ModalContainer = styled.div<{ modalState: boolean }>`
 `;
 
 const ModalHeader = styled.header`
+  position: relative;
   padding: 20px;
   display: flex;
   justify-content: center;
@@ -73,6 +100,25 @@ const ModalHeader = styled.header`
   h5 {
     font-weight: 700;
   }
+`;
+
+const IconWrapper = styled.div`
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+`;
+const StyledCloseIcon = styled(FontAwesomeIcon)`
+  position: absolute;
+  top: 7.5px;
+  left: 9.5px;
+  cursor: pointer;
 `;
 
 const MainSection = styled.section`

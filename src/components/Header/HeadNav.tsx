@@ -12,11 +12,14 @@ import loginModal from '../../store/loginModal';
 const HeadNav = () => {
   // ✅ UserDropdown UI 외부 클릭 시, 닫히기 기능
   const userMenuRef = useRef<HTMLDivElement | null>(null);
+  const userButtonRef = useRef<HTMLLIElement | null>(null);
   useEffect(() => {
     const clickOutsideUserMenu = (e: MouseEvent) => {
       if (
         userMenuRef.current &&
-        !userMenuRef.current.contains(e.target as Node)
+        !userMenuRef.current.contains(e.target as Node) &&
+        // ✔️ userButton 클릭 시, 메뉴가 제대로 닫히지 않고 다시 열리는 버그 수정
+        !userButtonRef.current?.contains(e.target as Node)
       ) {
         setShowUserDropdown(false);
       }
@@ -67,7 +70,7 @@ const HeadNav = () => {
           <LangBox>
             <Lang />
           </LangBox>
-          <UserNav onClick={handleUserDropdown}>
+          <UserNav onClick={handleUserDropdown} ref={userButtonRef}>
             <FontAwesomeIcon icon={faBars} size='lg' className='barsIcon' />
             <FontAwesomeIcon
               icon={faCircleUser}
