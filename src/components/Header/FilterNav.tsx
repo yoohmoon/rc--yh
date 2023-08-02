@@ -7,6 +7,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { TAB_DATA_LIST } from './data';
+import { useRecoilState } from 'recoil';
+import filterCategory from '../../store/filterCategory';
 
 interface TabItemProps {
   slidePx: number;
@@ -41,9 +43,13 @@ const FilterNav: React.FC<FilterNavProps> = ({ scrollY }) => {
   };
 
   // 밑줄 indicator + tab func with filter
-  const [clickedFilterIndex, setClickedFilterIndex] = useState(0);
+  // const [clickedFilterIndex, setClickedFilterIndex] = useState(0);
+  const [clickedFilterIndex, setClickedFilterIndex] =
+    useRecoilState(filterCategory);
+
   const handleCategoryClick = (id: number) => {
     setClickedFilterIndex(id);
+    console.log('filter nav id? ', clickedFilterIndex);
   };
 
   return (
@@ -144,7 +150,15 @@ const TabItem = styled.li<TabItemProps>`
       background-color: ${(props) => props.theme.borderGray};
       position: absolute;
       bottom: 0px;
+      transform: scale(1);
+      transition: transform 0.01s ease-out;
     }
+  }
+
+  &:active {
+    transition: transform 0.01s ease-out;
+    transform: scale(0.93);
+    /* color: beige; */
   }
 
   &::after {
@@ -155,6 +169,8 @@ const TabItem = styled.li<TabItemProps>`
     background-color: ${(props) => props.theme.mainBlack};
     position: absolute;
     bottom: 0px;
+    transform: scale(1);
+    transition: transform 0.01s ease-out;
   }
 `;
 
