@@ -36,14 +36,12 @@ const Modal = () => {
         }}
       >
         <ModalHeader>
-          <IconWrapper>
-            <StyledCloseIcon
-              icon={faX}
-              size='sm'
-              onClick={() => {
-                setOpenLoginModal(false);
-              }}
-            />
+          <IconWrapper
+            onClick={() => {
+              setOpenLoginModal(false);
+            }}
+          >
+            <StyledCloseIcon icon={faX} size='sm' />
           </IconWrapper>
           <h5>로그인 또는 회원가입</h5>
         </ModalHeader>
@@ -121,6 +119,7 @@ const IconWrapper = styled.div`
   width: 30px;
   height: 30px;
   border-radius: 50%;
+  cursor: pointer;
 
   &:hover {
     background-color: rgba(0, 0, 0, 0.05);
@@ -130,7 +129,6 @@ const StyledCloseIcon = styled(FontAwesomeIcon)`
   position: absolute;
   top: 7.5px;
   left: 9.5px;
-  cursor: pointer;
 `;
 
 const MainSection = styled.section`

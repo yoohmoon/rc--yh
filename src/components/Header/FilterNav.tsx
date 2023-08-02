@@ -150,16 +150,13 @@ const TabItem = styled.li<TabItemProps>`
       background-color: ${(props) => props.theme.borderGray};
       position: absolute;
       bottom: 0px;
-      transform: scale(1);
-      transition: transform 0.01s ease-out;
     }
   }
 
-  &:active {
+  /* &:active {
     transition: transform 0.01s ease-out;
     transform: scale(0.93);
-    /* color: beige; */
-  }
+  } */
 
   &::after {
     content: '';
@@ -169,8 +166,6 @@ const TabItem = styled.li<TabItemProps>`
     background-color: ${(props) => props.theme.mainBlack};
     position: absolute;
     bottom: 0px;
-    transform: scale(1);
-    transition: transform 0.01s ease-out;
   }
 `;
 
