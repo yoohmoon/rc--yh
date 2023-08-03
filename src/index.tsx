@@ -51,7 +51,7 @@ root.render(
       <ThemeProvider theme={theme}>
         <Routes>
           <Route path='/' element={<Main />} />
-          <Route path='/rooms' element={<Rooms />} />
+          <Route path='/rooms/:roomId' element={<Rooms />} />
         </Routes>
       </ThemeProvider>
     </RecoilRoot>

@@ -3,6 +3,7 @@ import Card from './components/Card';
 import { styled } from 'styled-components';
 import { useRecoilState } from 'recoil';
 import filterCategory from '../../store/filterCategory';
+import { Link } from 'react-router-dom';
 
 interface CardData {
   id: number;
@@ -46,7 +47,9 @@ const MainSection = () => {
       <div>
         <Grid>
           {filteredRoomArr.map((card) => (
-            <Card key={card.id} data={card} />
+            <Link to={`/rooms/${card.id}`}>
+              <Card key={card.id} data={card} />
+            </Link>
           ))}
         </Grid>
       </div>

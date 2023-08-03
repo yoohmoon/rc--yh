@@ -2,6 +2,8 @@ import React from 'react';
 import HeadNav from '../components/Header/HeadNav';
 import { styled } from 'styled-components';
 import Modal from '../components/Modal/Modal';
+import { useParams } from 'react-router-dom';
+import RoomMainSection from '../RoomDetail/RoomMainSection';
 
 const RoomDetail = () => {
   return (
@@ -10,6 +12,7 @@ const RoomDetail = () => {
       <NavWrapper>
         <HeadNav isDetail={true} />
       </NavWrapper>
+      <RoomMainSection />
     </Container>
   );
 };
