@@ -41,7 +41,7 @@ const ButtonContainer = styled.button<ButtonContainerProps>`
   height: 48px;
 
   background-color: ${(props) => props.bgc};
-  color: ${(props) => (props.bgc ? '#fff' : props.theme.mainBlack)};
+  color: ${(props) => (props.bgc ? '#fff' : props.theme.color.mainBlack)};
   border-radius: 8px;
   font-size: ${(props) => (props.border ? '14px' : '16px')};
   font-weight: 700;
@@ -67,7 +67,7 @@ const ButtonContainer = styled.button<ButtonContainerProps>`
   ${(props) => {
     if (props.border) {
       return css`
-        border: 1px solid ${props.theme.mainBlack};
+        border: 1px solid ${props.theme.color.mainBlack};
         font-size: 14px;
       `;
     }

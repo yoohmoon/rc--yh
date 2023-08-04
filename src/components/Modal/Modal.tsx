@@ -105,7 +105,7 @@ const ModalHeader = styled.header`
   display: flex;
   justify-content: center;
   margin: 0 auto;
-  border-bottom: 1px solid ${(props) => props.theme.borderGray};
+  border-bottom: 1px solid ${({ theme }) => theme.color.borderGray};
 
   h5 {
     font-weight: 700;

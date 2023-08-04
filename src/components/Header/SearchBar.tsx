@@ -41,7 +41,7 @@ const SearchBarContainer = styled.div`
   align-items: center;
   width: 300px;
   height: 50px;
-  border: 1px solid ${(props) => props.theme.borderGray};
+  border: 1px solid ${({ theme }) => theme.color.borderGray};
   border-radius: 50px;
   transition: box-shadow 0.3s;
 
@@ -84,7 +84,7 @@ const IconWrapper = styled.div`
 
 const GuestText = styled.div<HeadNavProps>`
   padding: 0 16px;
-  color: ${(props) => props.theme.mainBlack};
+  color: ${({ theme }) => theme.color.mainBlack};
   font-weight: ${(props) => (props.isDetail ? '700' : '400')};
   font-size: ${(props) => props.isDetail && '14px'};
 
@@ -103,7 +103,7 @@ const GlassBox = styled.div`
   line-height: 32px;
   /* text-align: center; */
   border-radius: 50%;
-  background-color: ${(props) => props.theme.brandPink};
+  background-color: ${({ theme }) => theme.color.brandPink};
 
   .magnifying {
     color: #fff;
@@ -114,8 +114,8 @@ const GlassBox = styled.div`
 const Separator = styled.span`
   width: 1px;
   height: 25px;
-  border: 0.05px solid ${(props) => props.theme.borderGray};
-  background-color: ${(props) => props.theme.borderGray};
+  border: 0.05px solid ${({ theme }) => theme.color.borderGray};
+  background-color: ${({ theme }) => theme.color.borderGray};
 `;
 
 export default SearchBar;

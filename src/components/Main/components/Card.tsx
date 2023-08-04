@@ -68,7 +68,7 @@ const DescContainer = styled.div`
   line-height: 20px;
 
   div {
-    color: ${(props) => props.theme.darkGray};
+    color: ${({ theme }) => theme.color.darkGray};
   }
 `;
 

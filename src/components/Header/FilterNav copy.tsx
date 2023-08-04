@@ -112,7 +112,7 @@ const PrevArrowBtn = styled.button<TabItemProps>`
   /* display: ${(props) => props.slidePx}===0 ? 'none' : ''; */
   width: 30px;
   height: 30px;
-  border: 1px solid ${(props) => props.theme.borderGray};
+  border: 1px solid ${(props) => props.theme.color.borderGray};
   border-radius: 50%;
 `;
 const NextArrowBtn = styled.button<TabItemProps>`
@@ -120,7 +120,7 @@ const NextArrowBtn = styled.button<TabItemProps>`
   /* display: ${(props) => props.slidePx}===0 ? 'none' : ''; */
   width: 30px;
   height: 30px;
-  border: 1px solid ${(props) => props.theme.borderGray};
+  border: 1px solid ${({ theme }) => theme.color.borderGray};
   border-radius: 50%;
 `;
 
@@ -131,7 +131,7 @@ const FilterBtnWrapper = styled.div`
   width: 80px;
   height: 45px;
   padding: 0 12px;
-  border: 1px solid ${(props) => props.theme.borderGray};
+  border: 1px solid ${({ theme }) => theme.color.borderGray};
   border-radius: 10px;
 `;
 

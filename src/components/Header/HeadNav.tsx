@@ -100,7 +100,7 @@ const HeaderContainer = styled.div<HeadNavProps>`
   height: 80px;
   padding: 0 80px;
   border-bottom: ${(props) =>
-    props.isDetail ? 'none' : `1px solid ${props.theme.spLightGray}`};
+    props.isDetail ? 'none' : `1px solid ${props.theme.color.spLightGray}`};
 `;
 
 const LogoBox = styled.div`
@@ -145,7 +145,7 @@ const HostBox = styled.li`
 
   &:hover {
     cursor: pointer;
-    background-color: ${(props) => props.theme.bgLightGray};
+    background-color: ${({ theme }) => theme.color.bgLightGray};
   }
 `;
 const LangBox = styled.li`
@@ -157,7 +157,7 @@ const LangBox = styled.li`
 
   &:hover {
     cursor: pointer;
-    background-color: ${(props) => props.theme.bgLightGray};
+    background-color: ${({ theme }) => theme.color.bgLightGray};
   }
 `;
 
@@ -168,7 +168,7 @@ const UserNav = styled.li`
   width: 80px;
   height: 45px;
   padding: 5px 5px 5px 12px;
-  border: 1px solid ${(props) => props.theme.borderGray};
+  border: 1px solid ${({ theme }) => theme.color.borderGray};
   border-radius: 80px;
   transition: box-shadow 0.2s;
 
@@ -179,11 +179,11 @@ const UserNav = styled.li`
   }
 
   .barsIcon {
-    color: ${(props) => props.theme.mainBlack};
+    color: ${({ theme }) => theme.color.mainBlack};
   }
 
   .userIcon {
-    color: ${(props) => props.theme.darkGray};
+    color: ${({ theme }) => theme.color.darkGray};
   }
 `;
 

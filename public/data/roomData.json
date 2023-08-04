@@ -258,5 +258,30 @@
       "https://a0.muscache.com/im/pictures/miso/Hosting-790104764371300975/original/4bcc9c3a-b52c-424a-b4d7-13c48117ed64.jpeg?im_w=720"
     ],
     "category": { "id": 10, "title": "캠핑장" }
+  },
+  {
+    "id": 25,
+    "address": "수영구, 한국",
+    "price": 162272,
+    "distance": "314km 거리",
+    "date": "9월 18일~19일",
+    "images": [
+      "https://a0.muscache.com/im/pictures/97d6e6b0-e470-46f7-a143-924de1402bcb.jpg?im_w=720"
+    ],
+    "category": { "id": 3, "title": "해변 바로 앞" },
+    "rating": 5.0,
+    "superhost": true,
+    "reviews": 72,
+    "title": "New오픈#광안대교 #고층오션뷰#감성숙소#감성테라스#숙캉스#빔프로젝트#넷플,웨이브,티빙",
+    "host": {
+      "name": "지나"
+    },
+    "room": {
+      "type": "공동 주택",
+      "max": 4,
+      "bedroom": 1,
+      "bed": 1,
+      "bathroom": 1
+    }
   }
 ]

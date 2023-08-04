@@ -132,14 +132,14 @@ const TabItem = styled.li<TabItemProps>`
   gap: 9px;
   height: 100%;
   padding: 4px 0;
-  color: ${(props) => props.theme.darkGray};
+  color: ${({ theme }) => theme.color.darkGray};
 
   /* transform: translateX(-420px); */
   transform: translateX(${(props) => props.slidePx}px);
   transition: transform 0.8s ease-in-out;
 
   &:hover {
-    color: ${(props) => props.theme.mainBlack};
+    color: ${({ theme }) => theme.color.mainBlack};
     cursor: pointer;
 
     &::after {
@@ -147,7 +147,7 @@ const TabItem = styled.li<TabItemProps>`
       display: block;
       width: 100%;
       height: 2px;
-      background-color: ${(props) => props.theme.borderGray};
+      background-color: ${({ theme }) => theme.color.borderGray};
       position: absolute;
       bottom: 0px;
     }
@@ -163,7 +163,7 @@ const TabItem = styled.li<TabItemProps>`
     display: ${(props) => (props.isActive ? 'block' : 'none')};
     width: 100%;
     height: 2px;
-    background-color: ${(props) => props.theme.mainBlack};
+    background-color: ${({ theme }) => theme.color.mainBlack};
     position: absolute;
     bottom: 0px;
   }
@@ -187,7 +187,7 @@ const PrevArrowBtn = styled.button<TabItemProps>`
   /* display: ${(props) => props.slidePx}===0 ? 'none' : ''; */
   width: 30px;
   height: 30px;
-  border: 1px solid ${(props) => props.theme.borderGray};
+  border: 1px solid ${({ theme }) => theme.color.borderGray};
   border-radius: 50%;
 `;
 const NextArrowBtn = styled.button<{ slidePx: number; maxTranslateX: number }>`
@@ -196,7 +196,7 @@ const NextArrowBtn = styled.button<{ slidePx: number; maxTranslateX: number }>`
   /* display: ${(props) => props.slidePx}===0 ? 'none' : ''; */
   width: 30px;
   height: 30px;
-  border: 1px solid ${(props) => props.theme.borderGray};
+  border: 1px solid ${({ theme }) => theme.color.borderGray};
   border-radius: 50%;
 `;
 
@@ -208,7 +208,7 @@ const FilterBtnWrapper = styled.div`
   width: 80px;
   height: 45px;
   padding: 4px 17px;
-  border: 1px solid ${(props) => props.theme.borderGray};
+  border: 1px solid ${({ theme }) => theme.color.borderGray};
   border-radius: 10px;
   font-size: 14px;
 `;
