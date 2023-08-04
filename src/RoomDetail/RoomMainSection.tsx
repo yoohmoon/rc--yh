@@ -1,19 +1,71 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import RoomHeader from './RoomHeader';
 import { styled } from 'styled-components';
 import MapSection from './MapSection';
 
+export type Room = {
+  id: number;
+  address: string;
+  distance: string;
+  date: string;
+  price: number;
+  images: string[];
+  category: {
+    id: number;
+    title: string;
+  };
+  title: string;
+  rating: null | number;
+  superhost: boolean;
+  reviews: number;
+  host: {
+    name: string;
+  };
+  room: {
+    fullAddress: string;
+    type: string;
+    max: number;
+    bedroom: number;
+    bed: number;
+    bathroom: number;
+  };
+};
+
 const RoomMainSection = () => {
   const params = useParams();
-  const roomId = params.roomId;
+
+  let roomId: number | undefined;
+  if (params.roomId !== undefined) {
+    roomId = parseInt(params.roomId);
+  }
+
+  const [roomData, setRoomData] = useState<Room | undefined>();
+
+  useEffect(() => {
+    fetch('/data/roomData.json')
+      .then((res) => res.json())
+      .then((data: Room[]) => {
+        const selectedRoom = data.find((room) => room.id === roomId);
+        console.log(selectedRoom);
+        setRoomData(selectedRoom);
+      });
+    // .then((data: Room[]) => {
+    //   if (roomId !== undefined) {
+    //     console.log('room Data?? ', data[roomId - 1]);
+    //     const selectedRoomData = data[roomId - 1];
+    //     setRoomData(selectedRoomData);
+    //   }
+    // });
+  }, [roomId]);
 
   return (
     <Container>
       <RoomHeader />
       Room Id is...{roomId}
       <Separator></Separator>
-      <MapSection />
+      <MapSection roomData={roomData} />
+      <Separator />
     </Container>
   );
 };

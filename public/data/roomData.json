@@ -6,16 +6,46 @@
     "date": "9월 3일~8일",
     "price": 159000,
     "images": ["/images/Card/11.webp"],
-    "category": { "id": 1, "title": "멋진 수영장" }
+    "category": { "id": 1, "title": "멋진 수영장" },
+    "title": "여수리조트 #호텔식침구류 H203호 트라몬토",
+    "rating": null,
+    "superhost": false,
+    "reviews": 0,
+    "host": {
+      "name": "Onda"
+    },
+    "room": {
+      "fullAddress": "전라남도 여수시 돌산읍",
+      "type": "호텔",
+      "max": 4,
+      "bedroom": 1,
+      "bed": 2,
+      "bathroom": 1
+    }
   },
   {
     "id": 2,
-    "address": "Dolsan-eup, Yeosu-si, 한국",
+    "address": "Oedong-eup, Gyeongju, 한국",
     "distance": "326km 거리",
     "date": "9월 3일~8일",
     "price": 159000,
     "images": ["/images/Card/21.webp"],
-    "category": { "id": 1, "title": "멋진 수영장" }
+    "category": { "id": 1, "title": "멋진 수영장" },
+    "title": "#여수리조트 #호텔식침구류 #마운틴뷰 A206호 디아크 선라이즈",
+    "rating": null,
+    "superhost": false,
+    "reviews": 0,
+    "host": {
+      "name": "Onda"
+    },
+    "room": {
+      "fullAddress": "경주시 신계리",
+      "type": "호텔",
+      "max": 2,
+      "bedroom": 1,
+      "bed": 1,
+      "bathroom": 1
+    }
   },
   {
     "id": 3,
@@ -136,7 +166,22 @@
     "images": [
       "https://a0.muscache.com/im/pictures/miso/Hosting-926638381418918258/original/ff037c2c-2d78-4625-a8e7-34efbf241544.jpeg?im_w=720"
     ],
-    "category": { "id": 6, "title": "최고의 전망" }
+    "category": { "id": 6, "title": "최고의 전망" },
+    "title": "남산뷰 파티룸",
+    "rating": 4.83,
+    "superhost": false,
+    "reviews": 6,
+    "host": {
+      "name": "Ooze"
+    },
+    "room": {
+      "fullAddress": "서울 용산구 한강로1가",
+      "type": "공동 주택 전체",
+      "max": 4,
+      "bedroom": 1,
+      "bed": 2,
+      "bathroom": 1
+    }
   },
   {
     "id": 14,
@@ -158,7 +203,23 @@
     "images": [
       "https://a0.muscache.com/im/pictures/miso/Hosting-52769003/original/c46d53d6-10aa-47d5-8787-8dba7bf11cd8.jpeg?im_w=720"
     ],
-    "category": { "id": 6, "title": "최고의 전망" }
+    "category": { "id": 6, "title": "최고의 전망" },
+    "title": "양평 독채 펜션 프라이빗 공간. 자연의 향기와 함께 놀며 이야기 나누는 놀담",
+    "rating": 4.96,
+    "superhost": true,
+    "reviews": 102,
+    "host": {
+      "name": "현주",
+      "reviews": null
+    },
+    "room": {
+      "fullAddress": "한국 경기도 양평군 서종면",
+      "type": "별장 전체",
+      "max": 10,
+      "bedroom": 3,
+      "bed": 2,
+      "bathroom": 2
+    }
   },
   {
     "id": 16,
