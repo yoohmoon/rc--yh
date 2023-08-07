@@ -19,7 +19,7 @@ const Header = () => {
 
   return (
     <HeaderWrapper scrollY={scrollY}>
-      <HeadNav />
+      <HeadNav isDetail={false} />
       <FilterNav scrollY={scrollY} />
     </HeaderWrapper>
   );
@@ -33,7 +33,7 @@ const HeaderWrapper = styled.header<{ scrollY: number }>`
   height: ${(props) => (props.scrollY > 28 ? '160px' : '180px')};
   background-color: #fff;
   box-shadow: ${(props) =>
-    props.scrollY > 28 ? `0 1px 4px ${props.theme.borderGray}` : ''};
+    props.scrollY > 28 ? `0 1px 4px ${props.theme.color.borderGray}` : ''};
   transition: height 0.01s ease-in-out;
 `;
 

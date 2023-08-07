@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Card from './components/Card';
 import { styled } from 'styled-components';
+import { useRecoilState } from 'recoil';
+import filterCategory from '../../store/filterCategory';
+import { Link } from 'react-router-dom';
 
 interface CardData {
   id: number;
@@ -9,6 +12,7 @@ interface CardData {
   date: string;
   price: number;
   images: string[];
+  category: { id: number; title: string };
 }
 
 const MainSection = () => {
@@ -18,20 +22,34 @@ const MainSection = () => {
     fetch('/data/roomData.json', { method: 'GET' })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setCardsData(data);
       })
       .catch((error) => console.log(error));
   }, []);
 
+  const [clickedFilterIndex, setClickedFilterIndex] =
+    useRecoilState(filterCategory);
+
   if (!cardsData) return <div>Loading...</div>;
+
+  const filteredRoomArr = cardsData.filter(
+    (room) => room.category.id === clickedFilterIndex
+  );
+  if (filteredRoomArr.length === 0)
+    return (
+      <ErrorBox>
+        <ErrorMsg>선택한 조건의 숙소가 없습니다.</ErrorMsg>
+      </ErrorBox>
+    );
 
   return (
     <Container>
       <div>
         <Grid>
-          {cardsData.map((card) => (
-            <Card key={card.id} data={card} />
+          {filteredRoomArr.map((card) => (
+            <Link to={`/rooms/${card.id}`}>
+              <Card key={card.id} data={card} />
+            </Link>
           ))}
         </Grid>
       </div>
@@ -63,5 +81,12 @@ const Grid = styled.div`
     grid-template-columns: repeat(1, 1fr);
   }
 `;
+
+const ErrorBox = styled.div`
+  padding: 300px 80px;
+  text-align: center;
+`;
+
+const ErrorMsg = styled.div``;
 
 export default MainSection;

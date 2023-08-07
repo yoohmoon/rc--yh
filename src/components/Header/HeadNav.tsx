@@ -3,20 +3,28 @@ import { styled } from 'styled-components';
 import Logo from './Logo';
 import Lang from './Lang';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { useRecoilState } from 'recoil';
 import loginModal from '../../store/loginModal';
+import SearchBar from './SearchBar';
+import { Link } from 'react-router-dom';
 
-const HeadNav = () => {
+export interface HeadNavProps {
+  isDetail: boolean;
+}
+
+const HeadNav: React.FC<HeadNavProps> = ({ isDetail }) => {
   // ✅ UserDropdown UI 외부 클릭 시, 닫히기 기능
   const userMenuRef = useRef<HTMLDivElement | null>(null);
+  const userButtonRef = useRef<HTMLLIElement | null>(null);
   useEffect(() => {
     const clickOutsideUserMenu = (e: MouseEvent) => {
       if (
         userMenuRef.current &&
-        !userMenuRef.current.contains(e.target as Node)
+        !userMenuRef.current.contains(e.target as Node) &&
+        // ✔️ userButton 클릭 시, 메뉴가 제대로 닫히지 않고 다시 열리는 버그 수정
+        !userButtonRef.current?.contains(e.target as Node)
       ) {
         setShowUserDropdown(false);
       }
@@ -40,26 +48,14 @@ const HeadNav = () => {
   };
 
   return (
-    <HeaderContainer>
+    <HeaderContainer isDetail={isDetail}>
       <LogoBox>
-        <Logo />
+        <Link to='/'>
+          <Logo />
+        </Link>
       </LogoBox>
-      <SearchBar>
-        <DestBtn>어디든지</DestBtn>
-        <Separator></Separator>
-        <DateBtn>어디든 일주일</DateBtn>
-        <Separator></Separator>
-        <GuestBtn>
-          <IconWrapper>
-            <GuestText>게스트 추가</GuestText>
-            <GlassBox>
-              <FontAwesomeIcon
-                icon={faMagnifyingGlass}
-                className='magnifying'
-              />
-            </GlassBox>
-          </IconWrapper>
-        </GuestBtn>
+      <SearchBar isDetail={isDetail}>
+        {isDetail ? '검색 시작하기' : '게스트 추가'}
       </SearchBar>
       <NavLinks>
         <ul>
@@ -67,7 +63,7 @@ const HeadNav = () => {
           <LangBox>
             <Lang />
           </LangBox>
-          <UserNav onClick={handleUserDropdown}>
+          <UserNav onClick={handleUserDropdown} ref={userButtonRef}>
             <FontAwesomeIcon icon={faBars} size='lg' className='barsIcon' />
             <FontAwesomeIcon
               icon={faCircleUser}
@@ -97,13 +93,14 @@ const HeadNav = () => {
   );
 };
 
-const HeaderContainer = styled.div`
+const HeaderContainer = styled.div<HeadNavProps>`
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 80px;
   padding: 0 80px;
-  border-bottom: 1px solid ${(props) => props.theme.spLightGray};
+  border-bottom: ${(props) =>
+    props.isDetail ? 'none' : `1px solid ${props.theme.color.spLightGray}`};
 `;
 
 const LogoBox = styled.div`
@@ -117,23 +114,6 @@ const LogoBox = styled.div`
   @media screen and (max-width: 950px) {
     flex-grow: 0;
     flex-basis: auto;
-  }
-`;
-
-const SearchBar = styled.div`
-  /* margin: 0 auto; */
-  display: flex;
-  align-items: center;
-  width: 300px;
-  height: 50px;
-  border: 1px solid ${(props) => props.theme.borderGray};
-  border-radius: 50px;
-  transition: box-shadow 0.3s;
-
-  &:hover {
-    cursor: pointer;
-    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
-    transition: box-shadow 0.2s;
   }
 `;
 
@@ -154,67 +134,6 @@ const NavLinks = styled.nav`
   }
 `;
 
-const DestBtn = styled.button`
-  flex-grow: 1;
-  font-weight: 700;
-
-  @media screen and (max-width: 800px) {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-`;
-const DateBtn = styled.button`
-  flex-grow: 1;
-  font-weight: 700;
-
-  @media screen and (max-width: 800px) {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-`;
-const GuestBtn = styled.button`
-  flex-grow: 2.6;
-`;
-
-const IconWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const GuestText = styled.div`
-  @media screen and (max-width: 800px) {
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-`;
-
-const GlassBox = styled.div`
-  width: 32px;
-  height: 32px;
-  line-height: 32px;
-  /* text-align: center; */
-  border-radius: 50%;
-  background-color: ${(props) => props.theme.brandPink};
-
-  .magnifying {
-    color: #fff;
-    text-align: center;
-  }
-`;
-
-const Separator = styled.span`
-  width: 1px;
-  height: 25px;
-  border: 0.05px solid ${(props) => props.theme.borderGray};
-  background-color: ${(props) => props.theme.borderGray};
-`;
-
 const HostBox = styled.li`
   height: 45px;
   line-height: 24px;
@@ -226,7 +145,7 @@ const HostBox = styled.li`
 
   &:hover {
     cursor: pointer;
-    background-color: ${(props) => props.theme.bgLightGray};
+    background-color: ${({ theme }) => theme.color.bgLightGray};
   }
 `;
 const LangBox = styled.li`
@@ -238,7 +157,7 @@ const LangBox = styled.li`
 
   &:hover {
     cursor: pointer;
-    background-color: ${(props) => props.theme.bgLightGray};
+    background-color: ${({ theme }) => theme.color.bgLightGray};
   }
 `;
 
@@ -249,7 +168,7 @@ const UserNav = styled.li`
   width: 80px;
   height: 45px;
   padding: 5px 5px 5px 12px;
-  border: 1px solid ${(props) => props.theme.borderGray};
+  border: 1px solid ${({ theme }) => theme.color.borderGray};
   border-radius: 80px;
   transition: box-shadow 0.2s;
 
@@ -260,11 +179,11 @@ const UserNav = styled.li`
   }
 
   .barsIcon {
-    color: ${(props) => props.theme.mainBlack};
+    color: ${({ theme }) => theme.color.mainBlack};
   }
 
   .userIcon {
-    color: ${(props) => props.theme.darkGray};
+    color: ${({ theme }) => theme.color.darkGray};
   }
 `;
 

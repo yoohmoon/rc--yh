@@ -1,5 +1,6 @@
 import React from 'react';
 import { styled } from 'styled-components';
+import { formatPrice } from '../../../utils/formatPrice';
 
 interface CardData {
   id: number;
@@ -15,21 +16,6 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ data }) => {
-  const formatPrice = (price: number) => {
-    let priceStr = price?.toString();
-    let priceArr = priceStr?.split('').reverse();
-
-    let formattedPrice = '';
-    for (let i = 0; i < priceArr?.length; i++) {
-      if (i > 0 && i % 3 === 0) {
-        formattedPrice = ',' + formattedPrice;
-      }
-      formattedPrice = priceArr[i] + formattedPrice;
-    }
-
-    return formattedPrice;
-  };
-
   return (
     <CardContainer>
       {/* <ImgBox> */}
@@ -82,7 +68,7 @@ const DescContainer = styled.div`
   line-height: 20px;
 
   div {
-    color: ${(props) => props.theme.darkGray};
+    color: ${({ theme }) => theme.color.darkGray};
   }
 `;
 

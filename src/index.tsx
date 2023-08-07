@@ -18,7 +18,7 @@ import TodoList from './lecture/todo/TodoList';
 import MainSection from './components/Main/MainSection';
 // import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import Rooms from './pages/Rooms';
+import Rooms from './pages/RoomDetail';
 import Main from './pages/Main';
 
 // const router = createBrowserRouter([
@@ -51,7 +51,7 @@ root.render(
       <ThemeProvider theme={theme}>
         <Routes>
           <Route path='/' element={<Main />} />
-          <Route path='/rooms' element={<Rooms />} />
+          <Route path='/rooms/:roomId' element={<Rooms />} />
         </Routes>
       </ThemeProvider>
     </RecoilRoot>
