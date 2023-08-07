@@ -1,6 +1,9 @@
 import React from 'react';
 import { styled } from 'styled-components';
 import { formatPrice } from '../../../utils/formatPrice';
+import HeartSvg from './HeartSvg';
+import { useRecoilState } from 'recoil';
+import loginModal from '../../../store/loginModal';
 
 interface CardData {
   id: number;
@@ -16,11 +19,21 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ data }) => {
+  const [openLoginModal, setOpenLoginModal] = useRecoilState(loginModal);
+  const handleHeartBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
+    // ✅ Link 태그의 페이지 이동 기본 동작이 이벤트 버블링 되어 버튼 태그의 기본 동작이 됐는데, 이걸 방지해줌.
+    e.preventDefault();
+    setOpenLoginModal(!openLoginModal);
+  };
+
   return (
     <CardContainer>
-      {/* <ImgBox> */}
-      <ImgContainer url={data.images[0]} />
-      {/* </ImgBox> */}
+      <ImgBox>
+        <ImgContainer url={data.images[0]} />
+        <HeartBtn onClick={handleHeartBtn}>
+          <HeartSvg />
+        </HeartBtn>
+      </ImgBox>
       <TextWrapper>
         <DescContainer>
           <Address>{data.address}</Address>
@@ -59,7 +72,20 @@ const ImgContainer = styled.div<{ url: string }>`
   border-radius: 12px;
 `;
 
-const ImgBox = styled.div``;
+const ImgBox = styled.div`
+  position: relative;
+`;
+
+const HeartBtn = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  &:active {
+    transform: scale(0.93);
+    transition: tranform 0.6s ease-in-out;
+  }
+`;
 
 const TextWrapper = styled.div``;
 
