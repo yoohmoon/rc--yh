@@ -24,7 +24,7 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
   return (
     <>
-      <ButtonContainer size={size} border={border} bgc={bgc}>
+      <ButtonContainer size={size} border={border} bgc={bgc} type='submit'>
         {icon && <IconWrapper>{icon}</IconWrapper>}
         <TextWrapper>
           <span>{children}</span>
