@@ -51,7 +51,17 @@ const ButtonContainer = styled.button<ButtonContainerProps>`
       return css`
         padding: 13px 0px;
         /* padding: 13px 23px; */
-        width: 520px;
+        /* width: 520px; */
+
+        /* 인풋과 너비 맞추기 위해 수정 */
+        width: 100%;
+
+        ${props.border &&
+        css`
+          &:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+          }
+        `}
       `;
     } else if (props.size === 'medium') {
       return css`

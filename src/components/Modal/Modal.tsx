@@ -3,10 +3,13 @@ import { useRecoilState } from 'recoil';
 import { styled } from 'styled-components';
 import loginModal from '../../store/loginModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faX } from '@fortawesome/free-solid-svg-icons';
+import { faMobileScreenButton, faX } from '@fortawesome/free-solid-svg-icons';
 import Button from '../Button';
-import FacebookLogo from './FacebookLogo';
+import FacebookLogo from './components/FacebookLogo';
 import LoginInput from './components/LoginInput';
+import NaverLogo from './components/NaverLogo';
+import GoogleLogo from './components/GoogleLogo';
+import AppleLogo from './components/AppleLogo';
 
 const Modal = () => {
   const [openLoginModal, setOpenLoginModal] = useRecoilState(loginModal);
@@ -50,17 +53,44 @@ const Modal = () => {
           <WelcomeMsg>에어비앤비에 오신 것을 환영합니다.</WelcomeMsg>
           <form>
             <LoginInput />
+            <ButtonContainer>
+              <Button bgc='#e00b40ec'>계속</Button>
+            </ButtonContainer>
           </form>
-          <Button bgc='#e00b40ec'>계속</Button>
-          {/* <Button
-            icon={<FontAwesomeIcon icon={faEnvelope} size='lg' />}
-            border={true}
-          >
-            이메일로 로그인하기
-          </Button>
-          <Button icon={<FacebookLogo />} border={true}>
-            페이스북으로 로그인하기
-          </Button> */}
+          <SeparatorWrapper>
+            <div></div>
+            <span>또는</span>
+          </SeparatorWrapper>
+          <ButtonWrapper>
+            <Button icon={<NaverLogo />} border={true}>
+              네이버로 로그인하기
+            </Button>
+          </ButtonWrapper>
+          <ButtonWrapper>
+            <Button icon={<FacebookLogo />} border={true}>
+              페이스북으로 로그인하기
+            </Button>
+          </ButtonWrapper>
+          <ButtonWrapper>
+            <Button icon={<GoogleLogo />} border={true}>
+              구글로 로그인하기
+            </Button>
+          </ButtonWrapper>
+          <ButtonWrapper>
+            <Button icon={<AppleLogo />} border={true}>
+              애플로 로그인하기
+            </Button>
+          </ButtonWrapper>
+          <ButtonsBox>
+            <ButtonWrapper>
+              <Button
+                icon={<FontAwesomeIcon icon={faMobileScreenButton} size='lg' />}
+                border={true}
+              >
+                전화번호로 로그인하기
+              </Button>
+            </ButtonWrapper>
+          </ButtonsBox>
         </MainSection>
       </ModalContainer>
     </Container>
@@ -70,7 +100,7 @@ const Modal = () => {
 const Container = styled.div<{ modalState: boolean }>`
   display: ${(props) => (props.modalState ? 'flex' : 'none')};
   justify-content: center;
-
+  align-items: center;
   position: fixed;
   z-index: 2;
   width: 100%;
@@ -83,8 +113,8 @@ const Container = styled.div<{ modalState: boolean }>`
 const ModalContainer = styled.div<{ modalState: boolean }>`
   display: ${(props) => (props.modalState ? 'block' : 'none')};
   width: 570px;
-  /*  */
-  height: 600px;
+
+  max-height: 80vh;
   background-color: #fff;
   border-radius: 12px;
 
@@ -136,14 +166,49 @@ const StyledCloseIcon = styled(FontAwesomeIcon)`
 `;
 
 const MainSection = styled.section`
+  max-height: 70vh;
   padding: 20px 20px;
+  padding-bottom: 0;
+
   color: ${({ theme }) => theme.color.mainBlack};
+
+  overflow-y: auto;
 `;
 
 const WelcomeMsg = styled.h4`
   margin: 8px 0 24px 0;
   font-size: 22px;
   font-weight: 700;
+`;
+
+const ButtonContainer = styled.div`
+  margin: 16px 0 24px 0;
+`;
+
+const SeparatorWrapper = styled.div`
+  position: relative;
+  margin: 16px 0;
+
+  div {
+    width: 100%;
+    height: 1px;
+    background-color: #ddd;
+  }
+
+  span {
+    position: absolute;
+    top: -5px;
+    left: 240px;
+    background-color: #fff;
+    font-size: 12px;
+    padding: 0 15px;
+    color: ${({ theme }) => theme.color.mainBlack};
+  }
+`;
+
+const ButtonsBox = styled.div``;
+const ButtonWrapper = styled.div`
+  margin-bottom: 16px;
 `;
 
 export default Modal;
