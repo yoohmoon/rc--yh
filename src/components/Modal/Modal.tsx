@@ -46,7 +46,7 @@ const Modal = () => {
           <h5>로그인 또는 회원가입</h5>
         </ModalHeader>
         <MainSection>
-          <h4>에어비앤비에 오신 것을 환영합니다</h4>
+          <WelcomeMsg>에어비앤비에 오신 것을 환영합니다.</WelcomeMsg>
           <Button bgc='#e00b40ec'>계속</Button>
           {/* <Button
             icon={<FontAwesomeIcon icon={faEnvelope} size='lg' />}
@@ -133,6 +133,13 @@ const StyledCloseIcon = styled(FontAwesomeIcon)`
 
 const MainSection = styled.section`
   padding: 20px 20px;
+  color: ${({ theme }) => theme.color.mainBlack};
+`;
+
+const WelcomeMsg = styled.h4`
+  margin: 8px 0 24px 0;
+  font-size: 22px;
+  font-weight: 700;
 `;
 
 export default Modal;
