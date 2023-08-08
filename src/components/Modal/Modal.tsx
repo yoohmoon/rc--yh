@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faX } from '@fortawesome/free-solid-svg-icons';
 import Button from '../Button';
 import FacebookLogo from './FacebookLogo';
+import LoginInput from './components/LoginInput';
 
 const Modal = () => {
   const [openLoginModal, setOpenLoginModal] = useRecoilState(loginModal);
@@ -47,6 +48,9 @@ const Modal = () => {
         </ModalHeader>
         <MainSection>
           <WelcomeMsg>에어비앤비에 오신 것을 환영합니다.</WelcomeMsg>
+          <form>
+            <LoginInput />
+          </form>
           <Button bgc='#e00b40ec'>계속</Button>
           {/* <Button
             icon={<FontAwesomeIcon icon={faEnvelope} size='lg' />}
