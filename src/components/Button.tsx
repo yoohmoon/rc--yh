@@ -7,6 +7,7 @@ interface ButtonProps {
   size?: 'small' | 'medium' | 'large';
   border?: boolean;
   bgc?: string;
+  funcClick?: () => void;
 }
 
 interface ButtonContainerProps {
@@ -21,10 +22,17 @@ const Button: React.FC<ButtonProps> = ({
   size = 'large',
   border,
   bgc,
+  funcClick,
 }) => {
   return (
     <>
-      <ButtonContainer size={size} border={border} bgc={bgc} type='submit'>
+      <ButtonContainer
+        size={size}
+        border={border}
+        bgc={bgc}
+        type='button'
+        onClick={funcClick}
+      >
         {icon && <IconWrapper>{icon}</IconWrapper>}
         <TextWrapper>
           <span>{children}</span>
