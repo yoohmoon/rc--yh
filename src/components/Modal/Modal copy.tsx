@@ -1,112 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { styled } from 'styled-components';
 import loginModal from '../../store/loginModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faChevronLeft,
-  faMobileScreenButton,
-  faX,
-} from '@fortawesome/free-solid-svg-icons';
+import { faMobileScreenButton, faX } from '@fortawesome/free-solid-svg-icons';
 import Button from '../Button';
 import FacebookLogo from './components/FacebookLogo';
 import LoginInput from './components/LoginInput';
 import NaverLogo from './components/NaverLogo';
 import GoogleLogo from './components/GoogleLogo';
 import AppleLogo from './components/AppleLogo';
-import SignupModal from './SignupModal';
-
-export enum ModalStep {
-  LoginEmail,
-  LoginPassword,
-  Signup,
-}
 
 const Modal = () => {
-  const [modalStep, setModalStep] = useState(ModalStep.LoginEmail);
-  const handleNextBtn = () => {
-    // e.preventDefault();
-    switch (modalStep) {
-      case ModalStep.LoginEmail:
-        setModalStep(ModalStep.Signup);
-        break;
-    }
-  };
-  const handleForm = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-  };
-
-  const renderModalContent = () => {
-    switch (modalStep) {
-      case ModalStep.LoginEmail:
-        return (
-          <>
-            <ModalHeader>
-              <IconWrapper
-                onClick={() => {
-                  setOpenLoginModal(false);
-                }}
-              >
-                <StyledCloseIcon icon={faX} size='sm' />
-              </IconWrapper>
-              <h5>로그인 또는 회원가입</h5>
-            </ModalHeader>
-            <MainSection>
-              <WelcomeMsg>에어비앤비에 오신 것을 환영합니다.</WelcomeMsg>
-              <form onSubmit={handleForm}>
-                <LoginInput />
-                <ButtonContainer>
-                  <Button bgc='#e00b40ec' funcClick={handleNextBtn}>
-                    계속
-                  </Button>
-                </ButtonContainer>
-              </form>
-              <SeparatorWrapper>
-                <div></div>
-                <span>또는</span>
-              </SeparatorWrapper>
-
-              {/* 👉 map 이용해서 코드 줄여보는 것 시도해보기 */}
-              <ButtonWrapper>
-                <Button icon={<NaverLogo />} border={true}>
-                  네이버로 로그인하기
-                </Button>
-              </ButtonWrapper>
-              <ButtonWrapper>
-                <Button icon={<FacebookLogo />} border={true}>
-                  페이스북으로 로그인하기
-                </Button>
-              </ButtonWrapper>
-              <ButtonWrapper>
-                <Button icon={<GoogleLogo />} border={true}>
-                  구글로 로그인하기
-                </Button>
-              </ButtonWrapper>
-              <ButtonWrapper>
-                <Button icon={<AppleLogo />} border={true}>
-                  애플로 로그인하기
-                </Button>
-              </ButtonWrapper>
-              <ButtonsBox>
-                <ButtonWrapper>
-                  <Button
-                    icon={
-                      <FontAwesomeIcon icon={faMobileScreenButton} size='lg' />
-                    }
-                    border={true}
-                  >
-                    전화번호로 로그인하기
-                  </Button>
-                </ButtonWrapper>
-              </ButtonsBox>
-            </MainSection>
-          </>
-        );
-      case ModalStep.Signup:
-        return <SignupModal setModalStep={setModalStep} />;
-    }
-  };
-
   const [openLoginModal, setOpenLoginModal] = useRecoilState(loginModal);
   // ➕ 모달 창 오픈 시, 배경 스크롤 막기 기능 추가
   useEffect(() => {
@@ -134,7 +39,59 @@ const Modal = () => {
           e.stopPropagation();
         }}
       >
-        {renderModalContent()}
+        <ModalHeader>
+          <IconWrapper
+            onClick={() => {
+              setOpenLoginModal(false);
+            }}
+          >
+            <StyledCloseIcon icon={faX} size='sm' />
+          </IconWrapper>
+          <h5>로그인 또는 회원가입</h5>
+        </ModalHeader>
+        <MainSection>
+          <WelcomeMsg>에어비앤비에 오신 것을 환영합니다.</WelcomeMsg>
+          <form>
+            <LoginInput />
+            <ButtonContainer>
+              <Button bgc='#e00b40ec'>계속</Button>
+            </ButtonContainer>
+          </form>
+          <SeparatorWrapper>
+            <div></div>
+            <span>또는</span>
+          </SeparatorWrapper>
+          <ButtonWrapper>
+            <Button icon={<NaverLogo />} border={true}>
+              네이버로 로그인하기
+            </Button>
+          </ButtonWrapper>
+          <ButtonWrapper>
+            <Button icon={<FacebookLogo />} border={true}>
+              페이스북으로 로그인하기
+            </Button>
+          </ButtonWrapper>
+          <ButtonWrapper>
+            <Button icon={<GoogleLogo />} border={true}>
+              구글로 로그인하기
+            </Button>
+          </ButtonWrapper>
+          <ButtonWrapper>
+            <Button icon={<AppleLogo />} border={true}>
+              애플로 로그인하기
+            </Button>
+          </ButtonWrapper>
+          <ButtonsBox>
+            <ButtonWrapper>
+              <Button
+                icon={<FontAwesomeIcon icon={faMobileScreenButton} size='lg' />}
+                border={true}
+              >
+                전화번호로 로그인하기
+              </Button>
+            </ButtonWrapper>
+          </ButtonsBox>
+        </MainSection>
       </ModalContainer>
     </Container>
   );

@@ -5,7 +5,9 @@ const color = {
   mainBlack: '#222222',
   bgLightGray: '#f7f7f7',
   spLightGray: '#EBEBEB',
+  inputGray: '#b0b0b0',
   mainPink: '#E00B41',
+  alertRed: '#C13515',
 };
 
 const fontSize = {

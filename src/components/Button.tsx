@@ -7,6 +7,7 @@ interface ButtonProps {
   size?: 'small' | 'medium' | 'large';
   border?: boolean;
   bgc?: string;
+  funcClick?: () => void;
 }
 
 interface ButtonContainerProps {
@@ -21,10 +22,17 @@ const Button: React.FC<ButtonProps> = ({
   size = 'large',
   border,
   bgc,
+  funcClick,
 }) => {
   return (
     <>
-      <ButtonContainer size={size} border={border} bgc={bgc}>
+      <ButtonContainer
+        size={size}
+        border={border}
+        bgc={bgc}
+        type='button'
+        onClick={funcClick}
+      >
         {icon && <IconWrapper>{icon}</IconWrapper>}
         <TextWrapper>
           <span>{children}</span>
@@ -51,7 +59,17 @@ const ButtonContainer = styled.button<ButtonContainerProps>`
       return css`
         padding: 13px 0px;
         /* padding: 13px 23px; */
-        width: 520px;
+        /* width: 520px; */
+
+        /* 인풋과 너비 맞추기 위해 수정 */
+        width: 100%;
+
+        ${props.border &&
+        css`
+          &:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+          }
+        `}
       `;
     } else if (props.size === 'medium') {
       return css`
