@@ -14,7 +14,6 @@ import { RecoilRoot } from 'recoil';
 //   Routes,
 //   createBrowserRouter,
 // } from 'react-router-dom';
-import TodoList from './lecture/todo/TodoList';
 import MainSection from './components/Main/MainSection';
 // import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';

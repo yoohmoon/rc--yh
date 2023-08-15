@@ -1,7 +1,6 @@
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
 import { styled } from 'styled-components';
-import { ModalStep } from './Modal';
 import LoginInput from './components/LoginInput';
 import Button from '../Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,6 +12,7 @@ import {
   SeparatorWrapper,
   StyledCloseIcon,
 } from './index.styles';
+import { ModalStep } from './components/LoginModal';
 
 type SignupProps = {
   setModalStep: React.Dispatch<React.SetStateAction<ModalStep>>;

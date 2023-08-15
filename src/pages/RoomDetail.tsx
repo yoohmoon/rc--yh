@@ -3,11 +3,12 @@ import HeadNav from '../components/Header/HeadNav';
 import { styled } from 'styled-components';
 import Modal from '../components/Modal/Modal';
 import RoomMainSection from '../RoomDetail/RoomMainSection';
+import LoginModal from '../components/Modal/components/LoginModal';
 
 const RoomDetail = () => {
   return (
     <Container>
-      <Modal />
+      <Modal content={<LoginModal />} />
       <NavWrapper>
         <HeadNav isDetail={true} />
       </NavWrapper>
