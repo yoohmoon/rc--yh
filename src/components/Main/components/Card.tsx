@@ -2,8 +2,9 @@ import React from 'react';
 import { styled } from 'styled-components';
 import { formatPrice } from '../../../utils/formatPrice';
 import HeartSvg from './HeartSvg';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import loginModal from '../../../store/loginModal';
+import modalType, { ModalTypes } from '../../../store/modalType';
 
 interface CardData {
   id: number;
@@ -20,17 +21,22 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ data }) => {
   const [openLoginModal, setOpenLoginModal] = useRecoilState(loginModal);
-  const handleHeartBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
-    // ✅ Link 태그의 페이지 이동 기본 동작이 이벤트 버블링 되어 버튼 태그의 기본 동작이 됐는데, 이걸 방지해줌.
-    e.preventDefault();
-    setOpenLoginModal(!openLoginModal);
-  };
+  const setModalTypeState = useSetRecoilState(modalType);
+  const handleHeartBtn =
+    (type: ModalTypes) => (e: React.MouseEvent<HTMLButtonElement>) => {
+      // ➡️ 커링(currying) :
+      // handleHeartBtn 함수는 첫 번째 인수로 type: ModalTypes를 받고, 그 결과로 이벤트 객체를 인자로 하는 또 다른 함수를 반환
+      // ✅ Link 태그의 페이지 이동 기본 동작이 이벤트 버블링 되어 버튼 태그의 기본 동작이 됐는데, 이걸 방지해줌.
+      e.preventDefault();
+      setOpenLoginModal(!openLoginModal);
+      setModalTypeState(type);
+    };
 
   return (
     <CardContainer>
       <ImgBox>
         <ImgContainer url={data.images[0]} />
-        <HeartBtn onClick={handleHeartBtn}>
+        <HeartBtn onClick={handleHeartBtn('USER')}>
           <HeartSvg />
         </HeartBtn>
       </ImgBox>
