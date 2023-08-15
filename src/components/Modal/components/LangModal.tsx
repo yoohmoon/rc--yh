@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
+import { useRecoilState } from 'recoil';
 import { styled } from 'styled-components';
+import { localeState, selectedLangIdState } from '../../../store/langOptions';
 
 type LangProps = {
   key: number;
@@ -9,8 +11,11 @@ type LangProps = {
 };
 
 const LangModal = () => {
-  const [locale, setLocale] = useState(localStorage.getItem('locale') ?? 'ko');
-  const [selectedLangId, setSelectedLangId] = useState(1);
+  const [selectedLangId, setSelectedLangId] =
+    useRecoilState(selectedLangIdState);
+  const [locale, setLocale] = useRecoilState(localeState);
+  // const [locale, setLocale] = useState(localStorage.getItem('locale') ?? 'ko');
+  // const [selectedLangId, setSelectedLangId] = useState(1);
 
   useEffect(() => {}, [locale]);
 
@@ -23,7 +28,7 @@ const LangModal = () => {
       // 클릭된 아이디로 보더 색상 주는 코드
       setSelectedLangId(id);
 
-      window.location.reload();
+      // window.location.reload();
     };
 
   return (

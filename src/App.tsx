@@ -1,53 +1,33 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import GlobalStyle from './styles/GlobalStyle';
+import { IntlProvider } from 'react-intl';
+import { ThemeProvider } from 'styled-components';
+import theme from './styles/theme';
 import Main from './pages/Main';
+import { useRecoilValue } from 'recoil';
+import { localeState } from './store/langOptions';
+import enUsMsg from './lang/en-US.json';
+import koMsg from './lang/ko.json';
+import Rooms from './pages/RoomDetail';
 
 const App = () => {
+  const locale = useRecoilValue(localeState);
+  const messages = { 'en-US': enUsMsg, ko: koMsg }[locale];
+
   return (
-    <div>
-      <Main />
-    </div>
+    <Router>
+      <GlobalStyle />
+      <IntlProvider locale={locale} messages={messages}>
+        <ThemeProvider theme={theme}>
+          <Routes>
+            <Route path='/' element={<Main />} />
+            <Route path='/rooms/:roomId' element={<Rooms />} />
+          </Routes>
+        </ThemeProvider>
+      </IntlProvider>
+    </Router>
   );
 };
 
 export default App;
-
-/* 
-import React, { useState } from 'react';
-import './App.css';
-import Store from './ts_preview/Store';
-import { Address, Restaurant } from './model/restaurant';
-import BestMenu from './ts_preview/BestMenu';
-
-
-let data: Restaurant = {
-  name: '식당',
-  category: 'western',
-  address: {
-    city: 'Seoul',
-    detail: 'Somewhere',
-    zipcode: 12345,
-  },
-  menu: [
-    { name: 'rose pasta', price: 2000, category: 'PASTA' },
-    { name: 'garlic steak', price: 3000, category: 'STEAK' },
-  ],
-};
-
-const App: React.FC = () => {
-  const [myRestaurant, setMyRestaurant] = useState<Restaurant>(data);
-  const changeAddress = (address: Address) => {
-    setMyRestaurant({ ...myRestaurant, address: address });
-  };
-
-  const showBestMenu = (name: string) => {
-    return name;
-  };
-
-  return (
-    <div className='App'>
-      <Store info={myRestaurant} changeAddress={changeAddress} />
-      <BestMenu name='pizza' category='PIZZA' showBestMenu={showBestMenu} />
-    </div>
-  );
-};
- */
