@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { TAB_DATA_LIST } from './data';
 import { useRecoilState } from 'recoil';
 import filterCategory from '../../store/filterCategory';
+import { FormattedMessage } from 'react-intl';
 
 interface TabItemProps {
   slidePx: number;
@@ -82,7 +83,9 @@ const FilterNav: React.FC<FilterNavProps> = ({ scrollY }) => {
         </NextArrowBtn>
         <FilterBtnWrapper>
           <FontAwesomeIcon icon={faFilter} size='xs' />
-          <span>필터</span>
+          <span>
+            <FormattedMessage id='filter' />
+          </span>
         </FilterBtnWrapper>
       </FilterNavContainer>
     </Container>

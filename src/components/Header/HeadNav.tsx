@@ -10,6 +10,7 @@ import loginModal from '../../store/loginModal';
 import SearchBar from './SearchBar';
 import { Link } from 'react-router-dom';
 import modalType, { ModalTypes } from '../../store/modalType';
+import { FormattedMessage } from 'react-intl';
 
 export interface HeadNavProps {
   isDetail: boolean;
@@ -61,11 +62,17 @@ const HeadNav: React.FC<HeadNavProps> = ({ isDetail }) => {
         </Link>
       </LogoBox>
       <SearchBar isDetail={isDetail}>
-        {isDetail ? '검색 시작하기' : '게스트 추가'}
+        {isDetail ? (
+          <FormattedMessage id='search' />
+        ) : (
+          <FormattedMessage id='addGuests' />
+        )}
       </SearchBar>
       <NavLinks>
         <ul>
-          <HostBox>당신의 공간을 에어비앤비하세요</HostBox>
+          <HostBox>
+            <FormattedMessage id='host' />
+          </HostBox>
           <LangBox onClick={handleModalButtons('LANG')}>
             <Lang />
           </LangBox>
@@ -79,19 +86,25 @@ const HeadNav: React.FC<HeadNavProps> = ({ isDetail }) => {
           </UserNav>
         </ul>
         <UserMenu showUserDropdown={showUserDropdown} ref={userMenuRef}>
-          <li onClick={handleModalButtons('USER')}>회원가입</li>
-          <li onClick={handleModalButtons('USER')}>로그인</li>
+          <li onClick={handleModalButtons('USER')}>
+            <FormattedMessage id='signup' />
+          </li>
+          <li onClick={handleModalButtons('USER')}>
+            <FormattedMessage id='login' />
+          </li>
           <div>
             <hr />
           </div>
 
           <li>
             <a href='https://www.airbnb.co.kr/host/homes'>
-              당신의 공간을 에어비앤비하세요
+              <FormattedMessage id='host' />
             </a>
           </li>
           <li>
-            <a href='https://www.airbnb.co.kr/help?audience=guest'>도움말</a>
+            <a href='https://www.airbnb.co.kr/help?audience=guest'>
+              <FormattedMessage id='help' />
+            </a>
           </li>
         </UserMenu>
       </NavLinks>

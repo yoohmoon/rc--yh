@@ -6,19 +6,12 @@ import GlobalStyle from './styles/GlobalStyle';
 import { ThemeProvider } from 'styled-components';
 import theme from './styles/theme';
 import { RecoilRoot } from 'recoil';
-// import {
-//   Link,
-//   Route,
-//   Router,
-//   RouterProvider,
-//   Routes,
-//   createBrowserRouter,
-// } from 'react-router-dom';
-import MainSection from './components/Main/MainSection';
-// import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Rooms from './pages/RoomDetail';
 import Main from './pages/Main';
+import { IntlProvider } from 'react-intl';
+import enUsMsg from './lang/en-US.json';
+import koMsg from './lang/ko.json';
 
 // const router = createBrowserRouter([
 //   { path: '/', element: <TodoList /> },
@@ -29,30 +22,22 @@ import Main from './pages/Main';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+const locale = localStorage.getItem('locale') ?? 'ko';
+const messages = { 'en-US': enUsMsg, ko: koMsg }[locale];
+
 root.render(
-  // <Router>
-  //   <div>
-  //     <Link to={'/'}>TodoList</Link>
-  //     <Link to={'/main'}>Main Page</Link>
-  //     <Routes>
-  //       <Route path='/' element={<TodoList />} />
-  //       <Route path='/main' element={<MainSection />} />
-  //     </Routes>
-  //   </div>
-  // </Router>
-  // <RouterProvider router={router}>
-
-  // </RouterProvider>
-
   <Router>
     <RecoilRoot>
       <GlobalStyle />
-      <ThemeProvider theme={theme}>
-        <Routes>
-          <Route path='/' element={<Main />} />
-          <Route path='/rooms/:roomId' element={<Rooms />} />
-        </Routes>
-      </ThemeProvider>
+      <IntlProvider locale={locale} messages={messages}>
+        <ThemeProvider theme={theme}>
+          <Routes>
+            <Route path='/' element={<Main />} />
+            <Route path='/rooms/:roomId' element={<Rooms />} />
+          </Routes>
+        </ThemeProvider>
+      </IntlProvider>
     </RecoilRoot>
   </Router>
 );

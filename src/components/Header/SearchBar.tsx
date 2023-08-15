@@ -3,9 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { styled } from 'styled-components';
 import { HeadNavProps } from './HeadNav';
+import { FormattedMessage } from 'react-intl';
 
 interface SearchBarProps {
-  children: string;
+  children: string | React.ReactNode;
 }
 
 const SearchBar: React.FC<HeadNavProps & SearchBarProps> = ({
@@ -16,9 +17,13 @@ const SearchBar: React.FC<HeadNavProps & SearchBarProps> = ({
     <SearchBarContainer>
       {!isDetail && (
         <>
-          <DestBtn>어디든지</DestBtn>
+          <DestBtn>
+            <FormattedMessage id='anyWhere' />
+          </DestBtn>
           <Separator></Separator>
-          <DateBtn>어디든 일주일</DateBtn>
+          <DateBtn>
+            <FormattedMessage id='anyWeek' />
+          </DateBtn>
           <Separator></Separator>
         </>
       )}
