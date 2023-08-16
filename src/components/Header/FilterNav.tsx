@@ -82,7 +82,7 @@ const FilterNav: React.FC<FilterNavProps> = ({ scrollY }) => {
           <FontAwesomeIcon icon={faChevronRight} />
         </NextArrowBtn>
         <FilterBtnWrapper>
-          <FontAwesomeIcon icon={faFilter} size='xs' />
+          <StyledFilterIcon icon={faFilter} size='xs' />
           <span>
             <FormattedMessage id='filter' />
           </span>
@@ -214,6 +214,14 @@ const FilterBtnWrapper = styled.div`
   border: 1px solid ${({ theme }) => theme.color.borderGray};
   border-radius: 10px;
   font-size: 14px;
+
+  span {
+    margin-left: 3px;
+  }
+`;
+
+const StyledFilterIcon = styled(FontAwesomeIcon)`
+  margin-right: 3px;
 `;
 
 export default FilterNav;

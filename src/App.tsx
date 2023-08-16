@@ -1,15 +1,15 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import GlobalStyle from './styles/GlobalStyle';
-import { IntlProvider } from 'react-intl';
-import { ThemeProvider } from 'styled-components';
-import theme from './styles/theme';
 import Main from './pages/Main';
+import Rooms from './pages/RoomDetail';
 import { useRecoilValue } from 'recoil';
 import { localeState } from './store/langOptions';
+import { IntlProvider } from 'react-intl';
+import GlobalStyle from './styles/GlobalStyle';
+import { ThemeProvider } from 'styled-components';
+import theme from './styles/theme';
 import enUsMsg from './lang/en-US.json';
 import koMsg from './lang/ko.json';
-import Rooms from './pages/RoomDetail';
 
 const App = () => {
   const locale = useRecoilValue(localeState);

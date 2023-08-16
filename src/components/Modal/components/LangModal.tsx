@@ -1,34 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useRecoilState } from 'recoil';
 import { styled } from 'styled-components';
-import { localeState, selectedLangIdState } from '../../../store/langOptions';
+import { localeState } from '../../../store/langOptions';
 
 type LangProps = {
   key: number;
-  itemId: number;
-  selectedLangId: number;
+  locale: string;
+  itemLocale: string;
 };
 
 const LangModal = () => {
-  const [selectedLangId, setSelectedLangId] =
-    useRecoilState(selectedLangIdState);
   const [locale, setLocale] = useRecoilState(localeState);
-  // const [locale, setLocale] = useState(localStorage.getItem('locale') ?? 'ko');
-  // const [selectedLangId, setSelectedLangId] = useState(1);
-
-  useEffect(() => {}, [locale]);
 
   const selectLangOpt =
     (id: number, lang: string) =>
     (event: React.MouseEvent<HTMLButtonElement>) => {
       setLocale(lang);
       localStorage.setItem('locale', lang);
-
-      // 클릭된 아이디로 보더 색상 주는 코드
-      setSelectedLangId(id);
-
-      // window.location.reload();
     };
 
   return (
@@ -38,11 +27,7 @@ const LangModal = () => {
       </LangTitle>
       <LangList>
         {LANG_DATA.map((item) => (
-          <LangItem
-            key={item.id}
-            itemId={item.id}
-            selectedLangId={selectedLangId}
-          >
+          <LangItem key={item.id} locale={locale} itemLocale={item.locale}>
             <button onClick={selectLangOpt(item.id, item.locale)}>
               <div>{item.language}</div>
               <Country>{item.country}</Country>
@@ -78,7 +63,7 @@ const LangItem = styled.li<LangProps>`
 
   button {
     border: ${(props) =>
-      props.selectedLangId === props.itemId
+      props.locale === props.itemLocale
         ? `1px solid ${props.theme.color.mainBlack}`
         : `none`};
     border-radius: 7px;
