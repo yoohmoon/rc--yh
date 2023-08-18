@@ -1,7 +1,13 @@
-#git practice!
-#change!
+# Project Structure
 
-# Getting Started with Create React App
+projectRoot
+|-- src
+| |-- App.js
+|-- lang
+| |-- en-US.json
+| |-- ko.json
+|-- package.json
+|-- .eslintrc.js
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

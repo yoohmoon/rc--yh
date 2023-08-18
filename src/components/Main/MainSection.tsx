@@ -47,8 +47,8 @@ const MainSection = () => {
       <div>
         <Grid>
           {filteredRoomArr.map((card) => (
-            <Link to={`/rooms/${card.id}`}>
-              <Card key={card.id} data={card} />
+            <Link to={`/rooms/${card.id}`} key={card.id}>
+              <Card data={card} />
             </Link>
           ))}
         </Grid>

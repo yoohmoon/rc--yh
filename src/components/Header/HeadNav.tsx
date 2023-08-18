@@ -9,12 +9,16 @@ import { useRecoilState } from 'recoil';
 import loginModal from '../../store/loginModal';
 import SearchBar from './SearchBar';
 import { Link } from 'react-router-dom';
+import modalType, { ModalTypes } from '../../store/modalType';
+import { FormattedMessage } from 'react-intl';
 
 export interface HeadNavProps {
   isDetail: boolean;
 }
 
 const HeadNav: React.FC<HeadNavProps> = ({ isDetail }) => {
+  const [modalTypeState, setModalTypeState] = useRecoilState(modalType);
+
   // ✅ UserDropdown UI 외부 클릭 시, 닫히기 기능
   const userMenuRef = useRef<HTMLDivElement | null>(null);
   const userButtonRef = useRef<HTMLLIElement | null>(null);
@@ -42,10 +46,13 @@ const HeadNav: React.FC<HeadNavProps> = ({ isDetail }) => {
   };
 
   const [openLoginModal, setOpenLoginModal] = useRecoilState(loginModal);
-  const handleLoginModal = () => {
-    setOpenLoginModal(!openLoginModal);
-    setShowUserDropdown(false);
-  };
+
+  const handleModalButtons =
+    (type: ModalTypes) => (event: React.MouseEvent) => {
+      setOpenLoginModal(!openLoginModal);
+      setShowUserDropdown(false);
+      setModalTypeState(type);
+    };
 
   return (
     <HeaderContainer isDetail={isDetail}>
@@ -55,12 +62,18 @@ const HeadNav: React.FC<HeadNavProps> = ({ isDetail }) => {
         </Link>
       </LogoBox>
       <SearchBar isDetail={isDetail}>
-        {isDetail ? '검색 시작하기' : '게스트 추가'}
+        {isDetail ? (
+          <FormattedMessage id='search' />
+        ) : (
+          <FormattedMessage id='addGuests' />
+        )}
       </SearchBar>
       <NavLinks>
         <ul>
-          <HostBox>당신의 공간을 에어비앤비하세요</HostBox>
-          <LangBox>
+          <HostBox>
+            <FormattedMessage id='host' />
+          </HostBox>
+          <LangBox onClick={handleModalButtons('LANG')}>
             <Lang />
           </LangBox>
           <UserNav onClick={handleUserDropdown} ref={userButtonRef}>
@@ -73,19 +86,25 @@ const HeadNav: React.FC<HeadNavProps> = ({ isDetail }) => {
           </UserNav>
         </ul>
         <UserMenu showUserDropdown={showUserDropdown} ref={userMenuRef}>
-          <li onClick={handleLoginModal}>회원가입</li>
-          <li onClick={handleLoginModal}>로그인</li>
+          <li onClick={handleModalButtons('USER')}>
+            <FormattedMessage id='signup' />
+          </li>
+          <li onClick={handleModalButtons('USER')}>
+            <FormattedMessage id='login' />
+          </li>
           <div>
             <hr />
           </div>
 
           <li>
             <a href='https://www.airbnb.co.kr/host/homes'>
-              당신의 공간을 에어비앤비하세요
+              <FormattedMessage id='host' />
             </a>
           </li>
           <li>
-            <a href='https://www.airbnb.co.kr/help?audience=guest'>도움말</a>
+            <a href='https://www.airbnb.co.kr/help?audience=guest'>
+              <FormattedMessage id='help' />
+            </a>
           </li>
         </UserMenu>
       </NavLinks>
@@ -115,6 +134,10 @@ const LogoBox = styled.div`
     flex-grow: 0;
     flex-basis: auto;
   }
+
+  @media screen and (max-width: 745px) {
+    display: none;
+  }
 `;
 
 const NavLinks = styled.nav`
@@ -125,6 +148,10 @@ const NavLinks = styled.nav`
 
   @media screen and (max-width: 1130px) {
     flex-basis: auto;
+  }
+
+  @media screen and (max-width: 745px) {
+    display: none;
   }
 
   ul {

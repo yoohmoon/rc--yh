@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
-import { formatPrice } from '../../../utils/formatPrice';
 import HeartSvg from './HeartSvg';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import loginModal from '../../../store/loginModal';
+import modalType, { ModalTypes } from '../../../store/modalType';
+import {
+  FormattedDate,
+  FormattedMessage,
+  FormattedNumber,
+  useIntl,
+} from 'react-intl';
+import axios from 'axios';
+import { convertedPrice } from '../../../utils/convertPrice';
+import { parseDateRange } from '../../../utils/parseDateRange';
 
 interface CardData {
   id: number;
@@ -18,30 +27,78 @@ interface CardProps {
   data: CardData;
 }
 
+interface CurrencyResponse {
+  date: string;
+  usd: number;
+}
+
 const Card: React.FC<CardProps> = ({ data }) => {
   const [openLoginModal, setOpenLoginModal] = useRecoilState(loginModal);
-  const handleHeartBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
-    // ✅ Link 태그의 페이지 이동 기본 동작이 이벤트 버블링 되어 버튼 태그의 기본 동작이 됐는데, 이걸 방지해줌.
-    e.preventDefault();
-    setOpenLoginModal(!openLoginModal);
-  };
+  const setModalTypeState = useSetRecoilState(modalType);
+  const handleHeartBtn =
+    (type: ModalTypes) => (e: React.MouseEvent<HTMLButtonElement>) => {
+      // ➡️ 커링(currying) :
+      // handleHeartBtn 함수는 첫 번째 인수로 type: ModalTypes를 받고, 그 결과로 이벤트 객체를 인자로 하는 또 다른 함수를 반환
+      e.preventDefault();
+      // ✅ Link 태그의 페이지 이동 기본 동작이 이벤트 버블링 되어 버튼 태그의 기본 동작이 됐는데, 이걸 방지해줌.
+      setOpenLoginModal(!openLoginModal);
+      setModalTypeState(type);
+    };
+
+  const intl = useIntl();
+
+  const [dollarCurrency, setDollarCurrency] = useState<number | null>(null);
+
+  useEffect(() => {
+    axios
+      .get<CurrencyResponse>(
+        'https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/krw/usd.min.json'
+      )
+      .then((res) => setDollarCurrency(res.data.usd))
+      .catch((error) =>
+        console.error('Error has occurred in fetching currency data', error)
+      );
+  }, [intl.locale]);
+
+  const { startDate, endDate } = parseDateRange(data.date);
+  console.log('Q? ', startDate, endDate);
 
   return (
     <CardContainer>
       <ImgBox>
         <ImgContainer url={data.images[0]} />
-        <HeartBtn onClick={handleHeartBtn}>
+        <HeartBtn onClick={handleHeartBtn('USER')}>
           <HeartSvg />
         </HeartBtn>
       </ImgBox>
       <TextWrapper>
         <DescContainer>
           <Address>{data.address}</Address>
-          <div>{data.distance}</div>
-          <div>{data.date}</div>
+          <div>
+            {data.distance}
+            <FormattedMessage id='distance.unit' />
+          </div>
+          {intl.locale === 'ko' ? (
+            <div>{data.date}</div>
+          ) : (
+            <div>
+              <FormattedDate value={startDate} month='short' day='2-digit' />
+              <span>-</span>
+              <FormattedDate value={endDate} month='short' day='2-digit' />
+            </div>
+          )}
         </DescContainer>
         <Price>
-          ₩{formatPrice(data.price)} <span>/박</span>
+          <FormattedNumber
+            value={convertedPrice(data.price, dollarCurrency, intl.locale)}
+            style='currency'
+            currencyDisplay='symbol'
+            currency={intl.formatMessage({ id: 'currency.unit' })}
+          />
+          <span>
+            {` / `}
+            <FormattedMessage id='day.unit' />
+          </span>
         </Price>
       </TextWrapper>
     </CardContainer>
