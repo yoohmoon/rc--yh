@@ -4,9 +4,15 @@ import HeartSvg from './HeartSvg';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import loginModal from '../../../store/loginModal';
 import modalType, { ModalTypes } from '../../../store/modalType';
-import { FormattedMessage, FormattedNumber, useIntl } from 'react-intl';
+import {
+  FormattedDate,
+  FormattedMessage,
+  FormattedNumber,
+  useIntl,
+} from 'react-intl';
 import axios from 'axios';
 import { convertedPrice } from '../../../utils/convertPrice';
+import { parseDateRange } from '../../../utils/parseDateRange';
 
 interface CardData {
   id: number;
@@ -54,6 +60,9 @@ const Card: React.FC<CardProps> = ({ data }) => {
       );
   }, [intl.locale]);
 
+  const { startDate, endDate } = parseDateRange(data.date);
+  console.log('Q? ', startDate, endDate);
+
   return (
     <CardContainer>
       <ImgBox>
@@ -69,7 +78,15 @@ const Card: React.FC<CardProps> = ({ data }) => {
             {data.distance}
             <FormattedMessage id='distance.unit' />
           </div>
-          <div>{data.date}</div>
+          {intl.locale === 'ko' ? (
+            <div>{data.date}</div>
+          ) : (
+            <div>
+              <FormattedDate value={startDate} month='short' day='2-digit' />
+              <span>-</span>
+              <FormattedDate value={endDate} month='short' day='2-digit' />
+            </div>
+          )}
         </DescContainer>
         <Price>
           <FormattedNumber
