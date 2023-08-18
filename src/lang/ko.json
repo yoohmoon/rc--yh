@@ -51,5 +51,14 @@
   "tab.tower": "타워",
   "day.unit": "박",
   "distance.unit": "km 거리",
-  "currency.unit": "KRW"
+  "currency.unit": "KRW",
+  "welcomeMsg": "에어비앤비에 오신 것을 환영합니다.",
+  "continueBtn": "계속",
+  "or": "또는",
+  "naver.login": "네이버로 로그인하기",
+  "facebook.login": "페이스북으로 로그인하기",
+  "google.login": "구글로 로그인하기",
+  "apple.login": "애플로 로그인하기",
+  "title.login": "로그인 또는 회원가입",
+  "email.input": "이메일"
 }

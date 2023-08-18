@@ -4,6 +4,7 @@ import signupData from '../../../store/signupData';
 import { styled } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
+import { FormattedMessage } from 'react-intl';
 
 type InputProps = {
   isEmailValid: boolean;
@@ -48,7 +49,9 @@ const LoginInput = () => {
           value={signupInfo.email} // (권장 방식) Controlled Component로 만들기 위함 ->  React 상태와 연동
           onChange={onEmailChange}
         />
-        <label htmlFor='floatingInput'>이메일</label>
+        <label htmlFor='floatingInput'>
+          <FormattedMessage id='email.input' />
+        </label>
       </InputWrapper>
       {signupInfo.email && !isEmailValid && (
         <ErrorMsg>

@@ -11,6 +11,7 @@ import { faMobileScreenButton } from '@fortawesome/free-solid-svg-icons';
 import SignupModal from '../SignupModal';
 import { useSetRecoilState } from 'recoil';
 import loginModal from '../../../store/loginModal';
+import { FormattedMessage } from 'react-intl';
 
 export enum ModalStep {
   LoginEmail,
@@ -40,39 +41,43 @@ const LoginModal = () => {
         return (
           <>
             <MainSection>
-              <WelcomeMsg>에어비앤비에 오신 것을 환영합니다.</WelcomeMsg>
+              <WelcomeMsg>
+                <FormattedMessage id='welcomeMsg' />
+              </WelcomeMsg>
               <form onSubmit={handleForm}>
                 <LoginInput />
                 <ButtonContainer>
                   <Button bgc='#e00b40ec' funcClick={handleNextBtn}>
-                    계속
+                    <FormattedMessage id='continueBtn' />
                   </Button>
                 </ButtonContainer>
               </form>
               <SeparatorWrapper>
                 <div></div>
-                <span>또는</span>
+                <span>
+                  <FormattedMessage id='or' />
+                </span>
               </SeparatorWrapper>
 
               {/* 👉 map 이용해서 코드 줄여보는 것 시도해보기 */}
               <ButtonWrapper>
                 <Button icon={<NaverLogo />} border={true}>
-                  네이버로 로그인하기
+                  <FormattedMessage id='naver.login' />
                 </Button>
               </ButtonWrapper>
               <ButtonWrapper>
                 <Button icon={<FacebookLogo />} border={true}>
-                  페이스북으로 로그인하기
+                  <FormattedMessage id='facebook.login' />
                 </Button>
               </ButtonWrapper>
               <ButtonWrapper>
                 <Button icon={<GoogleLogo />} border={true}>
-                  구글로 로그인하기
+                  <FormattedMessage id='google.login' />
                 </Button>
               </ButtonWrapper>
               <ButtonWrapper>
                 <Button icon={<AppleLogo />} border={true}>
-                  애플로 로그인하기
+                  <FormattedMessage id='apple.login' />
                 </Button>
               </ButtonWrapper>
               <ButtonsBox>
@@ -83,7 +88,7 @@ const LoginModal = () => {
                     }
                     border={true}
                   >
-                    전화번호로 로그인하기
+                    <FormattedMessage id='phone.login' />
                   </Button>
                 </ButtonWrapper>
               </ButtonsBox>

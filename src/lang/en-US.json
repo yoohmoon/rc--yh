@@ -51,5 +51,15 @@
   "tab.tower": "Towers",
   "day.unit": "night",
   "distance.unit": " kilometers away",
-  "currency.unit": "USD"
+  "currency.unit": "USD",
+  "welcomeMsg": "Welcome to Airbnb",
+  "continueBtn": "Continue",
+  "or": "or",
+  "naver.login": "Continue with Naver",
+  "facebook.login": "Continue with Facebook",
+  "google.login": "Continue with Google",
+  "apple.login": "Continue with Apple",
+  "phone.login": "Continue with Phone",
+  "title.login": "Log in or sign up",
+  "email.input": "email"
 }
