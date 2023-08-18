@@ -69,7 +69,9 @@ const FilterNav: React.FC<FilterNavProps> = ({ scrollY }) => {
                 isActive={item.id === clickedFilterIndex}
               >
                 <TabImg src={item.src} alt={item.title} />
-                <TabTitle>{item.title}</TabTitle>
+                <TabTitle>
+                  <FormattedMessage id={item.title} />
+                </TabTitle>
               </TabItem>
             </ItemBox>
           ))}
