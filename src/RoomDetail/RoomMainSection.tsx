@@ -47,16 +47,8 @@ const RoomMainSection = () => {
       .then((res) => res.json())
       .then((data: Room[]) => {
         const selectedRoom = data.find((room) => room.id === roomId);
-        console.log(selectedRoom);
         setRoomData(selectedRoom);
       });
-    // .then((data: Room[]) => {
-    //   if (roomId !== undefined) {
-    //     console.log('room Data?? ', data[roomId - 1]);
-    //     const selectedRoomData = data[roomId - 1];
-    //     setRoomData(selectedRoomData);
-    //   }
-    // });
   }, [roomId]);
 
   return (
