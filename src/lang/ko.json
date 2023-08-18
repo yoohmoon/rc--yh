@@ -48,5 +48,8 @@
   "tab.symbolic": "상징적 도시",
   "tab.wine": "와인 농장",
   "tab.tree": "트리 하우스",
-  "tab.tower": "타워"
+  "tab.tower": "타워",
+  "day.unit": "박",
+  "distance.unit": "km 거리",
+  "currency.unit": "KRW"
 }

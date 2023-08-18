@@ -48,5 +48,8 @@
   "tab.symbolic": "Iconic cities",
   "tab.wine": "Wine farms",
   "tab.tree": "Tree houses",
-  "tab.tower": "Towers"
+  "tab.tower": "Towers",
+  "day.unit": "night",
+  "distance.unit": " kilometers away",
+  "currency.unit": "USD"
 }

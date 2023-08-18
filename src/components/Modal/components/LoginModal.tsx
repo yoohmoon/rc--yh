@@ -7,7 +7,7 @@ import FacebookLogo from './FacebookLogo';
 import GoogleLogo from './GoogleLogo';
 import AppleLogo from './AppleLogo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMobileScreenButton, faX } from '@fortawesome/free-solid-svg-icons';
+import { faMobileScreenButton } from '@fortawesome/free-solid-svg-icons';
 import SignupModal from '../SignupModal';
 import { useSetRecoilState } from 'recoil';
 import loginModal from '../../../store/loginModal';
