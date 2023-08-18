@@ -134,6 +134,10 @@ const LogoBox = styled.div`
     flex-grow: 0;
     flex-basis: auto;
   }
+
+  @media screen and (max-width: 745px) {
+    display: none;
+  }
 `;
 
 const NavLinks = styled.nav`
@@ -144,6 +148,10 @@ const NavLinks = styled.nav`
 
   @media screen and (max-width: 1130px) {
     flex-basis: auto;
+  }
+
+  @media screen and (max-width: 745px) {
+    display: none;
   }
 
   ul {

@@ -55,6 +55,10 @@ const SearchBarContainer = styled.div`
     box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
     transition: box-shadow 0.2s;
   }
+
+  @media screen and (max-width: 745px) {
+    width: 100%;
+  }
 `;
 
 const DestBtn = styled.button`
